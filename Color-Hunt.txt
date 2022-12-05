@@ -1,6 +1,18 @@
 https://colorhunt.co/palette/e8f3d6fcf9beffdca9faab78
 
 #FAAB78
+
+tombol button
 #FFDCA9
+
+
 #FCF9BE
 #E8F3D6
+
+color placeholder input
+#FEFCF3
+color font input
+#DEDEDE
+
+Stop waiting in line. Buy tickets
+conveniently, watch movies quietly.
