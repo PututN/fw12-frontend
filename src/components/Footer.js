@@ -10,8 +10,8 @@ import SosmedYt from "../assets/images/logo-yt.png";
 
 const Footer = () => {
   return (
-    <div className="flex px-[80px] py-[30px] items-center">
-      <div className="flex flex-col">
+    <div className="flex px-[80px] py-[30px] items-center justify-center">
+      <div className="flex flex-col w-full">
         <div className="flex">
           <div className="flex-1 mr-8">
             <div>
@@ -20,7 +20,7 @@ const Footer = () => {
               </Link>
             </div>
             <div>
-              <p className="text-[16px] font-light text-[#6E7191]">
+              <p className="text-[16px] font-light text-[#6E7191] mt-2.5">
                 Stop waiting in line. Buy tickets conveniently, watch movies
                 quietly.
               </p>
@@ -98,7 +98,7 @@ const Footer = () => {
           </div>
         </div>
         <div>
-          <p className="text-center	">© 2022 Cinemnar. All Rights Reserved.</p>
+          <p className="text-center	font-thin mt-2.5">© 2022 Cinemnar. All Rights Reserved.</p>
         </div>
       </div>
     </div>

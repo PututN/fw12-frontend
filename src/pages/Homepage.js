@@ -1,15 +1,17 @@
 import Navbar from "../components/Navbar";
-import Footer from "../components/Footer"
-
+import Footer from "../components/Footer";
+import Index from "../components/Homepage/Index";
 
 const Homepage = () => {
-    return(
-        <div>
-            <Navbar />
-            <div>Homepage</div>
-            <Footer />
-        </div>
-    )
-}
+  return (
+    <div>
+      <Navbar />
+      <div>
+        <Index />
+      </div>
+      <Footer />
+    </div>
+  );
+};
 
 export default Homepage;
