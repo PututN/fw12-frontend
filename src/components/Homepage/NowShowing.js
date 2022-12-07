@@ -31,7 +31,7 @@ const NowShowing = () => {
             {Char.map((movie) => (
               <div className="relative group" key={movie.id}>
                 <div className="flex flex-col p-8 border-2 items-center rounded-lg border-[#0E5E6F] text-center hover:bg-white">
-                  <img
+                  <img className="rounded-lg"
                     src={movie.picture}
                     alt={movie.title}
                     title={movie.title}

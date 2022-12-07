@@ -74,7 +74,7 @@ const Signup = () => {
           </div>
 
           <div className="bg-[#FFDCA9] text-center mt-[32px] rounded-xl p-2.5 mb-5">
-            <Link to="/" className="font-bold">
+            <Link to="/Home" className="font-bold">
               Sign Up
             </Link>
           </div>

@@ -22,7 +22,7 @@ const NavBarAfterLogin = () => {
           </ul>
           <ul className="ml-[40px]">
             <li>
-              <Link to="/">List Movie</Link>
+              <Link to="/ViewAll">List Movie</Link>
             </li>
           </ul>
         </div>
