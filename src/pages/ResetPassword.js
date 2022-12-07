@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Background from "../assets/images/Logo-Bg.jpg";
 import Logo from "../assets/images/logo-cinemnar-removebg.png";
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
   return (
     <div className="flex">
       {/* left */}
@@ -25,7 +25,7 @@ const ForgotPassword = () => {
               </div>
               <div className="text-black font-bold">
                 <div className="flex items-center text-2xl mt-8 relative">
-                  <div className="bullet flex items-center justify-center mr-12 border-2 border-black rounded-full w-12 h-12 after:content-[' '] after:h-[35px] after:border-l-2 after:border-black after:absolute after:bottom-[-33px] bg-[#3A8891]">
+                  <div className="bullet flex items-center justify-center mr-12 border-2 border-black rounded-full w-12 h-12 after:content-[' '] after:h-[35px] after:border-l-2 after:border-black after:absolute after:bottom-[-33px]">
                     1
                   </div>
                   <p>Fill your complete email</p>
@@ -37,7 +37,7 @@ const ForgotPassword = () => {
                   <p>Check your email</p>
                 </div>
                 <div className="flex items-center text-2xl mt-8 relative">
-                  <div className="bullet flex items-center justify-center mr-12 border-2 border-black rounded-full w-12 h-12 after:content-[' '] after:h-[35px] after:border-l-2 after:border-black after:absolute after:bottom-[-33px]">
+                  <div className="bullet flex items-center justify-center mr-12 border-2 border-black rounded-full w-12 h-12 after:content-[' '] after:h-[35px] after:border-l-2 after:border-black after:absolute after:bottom-[-33px] bg-[#3A8891]">
                     3
                   </div>
                   <p>Enter your new password</p>
@@ -56,23 +56,32 @@ const ForgotPassword = () => {
       {/* right */}
       <div className="w-[40%] px-[40px] py-[100px]">
         <h1 className="mb-[12px] text-[30px] font-bold">
-          Fill your complete email
+        Fill your complete password
         </h1>
         <p className="text-[18px] mb-[38px] font-light">
-          we'll send a link to your email shortly
+        set your new password
         </p>
         <form>
           <div className="flex  flex-col">
-            <label className="mb-2.5">Email</label>
+            <label className="mb-2.5">Password</label>
             <input
-              type="email"
-              placeholder="Write your email"
+              type="password"
+              placeholder="Write your password"
               className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
             ></input>
           </div>
+          <div className="flex  flex-col mt-3">
+            <label className="mb-2.5">Confirm Password</label>
+            <input
+              type="password"
+              placeholder="Write your confirm password"
+              className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
+            ></input>
+          </div>
+
           <div className="bg-[#FFDCA9] text-center mt-[32px] rounded-xl p-2 mb-5">
-            <Link to="/ResetPassword" className="font-bold">
-              Send
+            <Link to="/Home" className="font-bold">
+              Submit
             </Link>
           </div>
         </form>
@@ -80,5 +89,4 @@ const ForgotPassword = () => {
     </div>
   );
 };
-
-export default ForgotPassword;
+export default ResetPassword;

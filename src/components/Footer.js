@@ -44,7 +44,7 @@ const Footer = () => {
               <ul>
                 <li>
                   <Link
-                    to="/"
+                    to="/ViewAll"
                     className="text-[#4E4B66] font-medium text-[14px]"
                   >
                     List Movie

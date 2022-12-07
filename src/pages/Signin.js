@@ -11,7 +11,7 @@ const Signin = () => {
           style={{ backgroundImage: `url(${Background})` }}>
           <div>
             <div className="absolute top-0 left-0 w-full h-full bg-[#E8F3D6] opacity-80">
-              <div className="flex items-center justify-center h-full w-11/12">
+              <div className="flex items-center justify-center h-screen w-11/12">
                 <div className="text-center">
                   <h1 className="text-7xl text-black font-bold">Cinemnar</h1>
                   <p className="text-5xl text-black font-thin">
@@ -47,7 +47,7 @@ const Signin = () => {
             ></input>
           </div>
           <div className="bg-[#FFDCA9] text-center mt-[32px] rounded-xl p-2 mb-5">
-            <Link to="/" className="font-bold">
+            <Link to="/Home" className="font-bold">
               Sign In
             </Link>
           </div>

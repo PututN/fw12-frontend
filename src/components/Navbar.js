@@ -20,13 +20,13 @@ const Navbar = () => {
           </ul>
           <ul className="ml-[40px]">
             <li>
-              <Link to="/">List Movie</Link>
+              <Link to="/ViewAll">List Movie</Link>
             </li>
           </ul>
         </div>
         <div>
-            <Link to='/Signin' className="bg-[#FFDCA9] mr-[40px] p-3 rounded-[10px]">Sign In</Link>
-            <Link to='/' className="bg-[#FCF9BE] p-3 rounded-[10px]">Sign Up</Link>
+            <Link to='/Signin' className="bg-[#3A8891] hover:bg-[#0E5E6F] text-white font-bold mr-[40px] p-3 rounded-[10px]">Sign In</Link>
+            <Link to='/Signup' className="bg-[#0E5E6F] hover:bg-[#3A8891] text-white font-bold p-3 rounded-[10px]">Sign Up</Link>
         </div>
       </div>
     </nav>
