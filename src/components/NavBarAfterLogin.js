@@ -17,12 +17,12 @@ const NavBarAfterLogin = () => {
           </ul>
           <ul className="ml-[40px]">
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/" className="font-semibold	text-base	leading-5	">Home</Link>
             </li>
           </ul>
           <ul className="ml-[40px]">
             <li>
-              <Link to="/ViewAll">List Movie</Link>
+              <Link to="/ViewAll" className="font-semibold	text-base	leading-5	">List Movie</Link>
             </li>
           </ul>
         </div>
