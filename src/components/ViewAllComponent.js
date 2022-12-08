@@ -99,7 +99,7 @@ const ViewAllComponent = () => {
                       <div className="text-xs text-slate-400">{item.genre}</div>
                     </div>
                     <button className="bg-[#3A8891] hover:bg-[#0E5E6F] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3">
-                      Details
+                      <Link to="/MovieDetail">Details</Link>
                     </button>
                   </div>
                 </div>
