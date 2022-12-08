@@ -10,6 +10,7 @@ import ViewAll from './pages/ViewAll'
 import MovieDetail from './pages/MovieDetail'
 import OrderPage from './pages/OrderPage'
 import PaymentPage from './pages/PaymentPage'
+import ProfilePage from './pages/ProfilePage'
 
 const App = () => {
   return (
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/MovieDetail" element= {<MovieDetail />} />
         <Route path="/OrderPage" element= {<OrderPage />} />
         <Route path="/PaymentPage" element= {<PaymentPage />} />
+        <Route path="/Profile" element= {<ProfilePage />} />
       </Routes>
     
     </BrowserRouter>

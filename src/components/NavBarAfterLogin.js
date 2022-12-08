@@ -27,7 +27,7 @@ const NavBarAfterLogin = () => {
           </ul>
         </div>
         <div className="flex items-center justify-center gap-10">
-          <div className="group flex hover:border-2 hover:border-[#dedede] hover:bg-[#FEFCF3] rounded-2xl">
+          <div className="group flex hover:border-2 hover:border-[#dedede] hover:bg-[#FEFCF3] rounded-xl">
             <img className="pl-3 mr-3" src={searchIcon} alt="search" />
             <div>
               <input
