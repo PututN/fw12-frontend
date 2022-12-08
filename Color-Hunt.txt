@@ -8,6 +8,7 @@ https://colorhunt.co/palette/f2debaffefd60e5e6f3a8891
 
 #3A8891
 
+#665A48
 
 NowShowing : http://localhost:8888/movies/nowShowing
 Upcoming : http://localhost:8888/movies/upComingMovies
