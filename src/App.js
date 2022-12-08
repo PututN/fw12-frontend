@@ -11,6 +11,8 @@ import MovieDetail from './pages/MovieDetail'
 import OrderPage from './pages/OrderPage'
 import PaymentPage from './pages/PaymentPage'
 import ProfilePage from './pages/ProfilePage'
+import History from './pages/History'
+
 
 const App = () => {
   return (
@@ -27,6 +29,7 @@ const App = () => {
         <Route path="/OrderPage" element= {<OrderPage />} />
         <Route path="/PaymentPage" element= {<PaymentPage />} />
         <Route path="/Profile" element= {<ProfilePage />} />
+        <Route path="/History" element= {<History />} />
       </Routes>
     
     </BrowserRouter>
