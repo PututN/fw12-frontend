@@ -6,7 +6,7 @@ const ResetPassword = () => {
   return (
     <div className="flex">
       {/* left */}
-      <div className="w-[60%] h-screen">
+      <div className="w-[60%] h-screen max-[768px]:hidden">
         <div
           className="bg-cover bg-center bg-no-repeat w-full h-full relative"
           style={{ backgroundImage: `url(${Background})` }}
@@ -55,11 +55,19 @@ const ResetPassword = () => {
       </div>
       {/* right */}
       <div className="w-[40%] px-[40px] py-[100px]">
-        <h1 className="mb-[12px] text-[30px] font-bold">
-        Fill your complete password
+        <div className="flex justify-center">
+          <img
+            src={Logo}
+            alt="cinemnar"
+            className="hidden max-[768px]:block max-[768px]:w-[180px] max-[375px]:w-[150px]"
+          ></img>
+        </div>
+
+        <h1 className="mb-[12px] text-[30px] font-bold  max-[768px]:text-[20px]">
+          Fill your complete password
         </h1>
         <p className="text-[18px] mb-[38px] font-light">
-        set your new password
+          set your new password
         </p>
         <form>
           <div className="flex  flex-col">

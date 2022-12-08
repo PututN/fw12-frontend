@@ -6,7 +6,7 @@ const ForgotPassword = () => {
   return (
     <div className="flex">
       {/* left */}
-      <div className="w-[60%] h-screen">
+      <div className="w-[60%] h-screen max-[768px]:hidden">
         <div
           className="bg-cover bg-center bg-no-repeat w-full h-full relative"
           style={{ backgroundImage: `url(${Background})` }}
@@ -54,8 +54,16 @@ const ForgotPassword = () => {
         </div>
       </div>
       {/* right */}
-      <div className="w-[40%] px-[40px] py-[100px]">
-        <h1 className="mb-[12px] text-[30px] font-bold">
+      <div className="w-[40%] px-[40px] py-[100px] max-[768px]:w-screen max-[768px]:py-[50px] max-[375px]:pt-[15px]">
+      <div className="flex justify-center">
+          <img
+            src={Logo}
+            alt="cinemnar"
+            className="hidden max-[768px]:block max-[768px]:w-[180px] max-[375px]:w-[150px]"
+          ></img>
+        </div>
+
+        <h1 className="mb-[12px] text-[30px] font-bold max-[768px]:text-[20px]">
           Fill your complete email
         </h1>
         <p className="text-[18px] mb-[38px] font-light">
