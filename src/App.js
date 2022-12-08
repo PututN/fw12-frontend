@@ -9,6 +9,7 @@ import Home from './pages/Home'
 import ViewAll from './pages/ViewAll'
 import MovieDetail from './pages/MovieDetail'
 import OrderPage from './pages/OrderPage'
+import PaymentPage from './pages/PaymentPage'
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/ViewAll" element= {<ViewAll />} />
         <Route path="/MovieDetail" element= {<MovieDetail />} />
         <Route path="/OrderPage" element= {<OrderPage />} />
+        <Route path="/PaymentPage" element= {<PaymentPage />} />
       </Routes>
     
     </BrowserRouter>

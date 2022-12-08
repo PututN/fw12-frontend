@@ -10,6 +10,9 @@ https://colorhunt.co/palette/f2debaffefd60e5e6f3a8891
 
 #665A48
 
+bg-[#665A48] hover:bg-[#3A8891]
+bg-[#0E5E6F] hover:bg-[#3A8891] text-white
+
 NowShowing : http://localhost:8888/movies/nowShowing
 Upcoming : http://localhost:8888/movies/upComingMovies
 ViewAll : http://localhost:8888/movies?limit=8
