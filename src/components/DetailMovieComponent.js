@@ -15,16 +15,15 @@ const DetailMovie = () => {
     SetChar(data.results);
     console.log(data.results);
   };
+  
   let duration = Char?.duration
   let jam = String(duration).split(':').slice(0,1).join(':')
   let menit = String(duration).split(':')[1]
-  // console.log(String(duration).split(':')[1])
-  // console.log(typeof duration)
+
   let NewDate = new Date(Char.releaseDate).toDateString()
   let bulan = NewDate.split(' ')[1]
   let tanggal = NewDate.split(' ')[2]
   let tahun = NewDate.split(' ')[3]
-  console.log(Char?.casts)
 
   return (
     <>
@@ -68,7 +67,7 @@ const DetailMovie = () => {
                   <div className="font-normal	text-sm leading-6	text-[#0E5E6F]">
                     Casts
                   </div>
-                  <div>Tom Holland, Michael Keaton, Robert Downey Jr., ...</div>
+                  <div>{Char?.casts},...</div>
                 </div>
               </div>
             </div>
