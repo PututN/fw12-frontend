@@ -34,6 +34,9 @@ const Signin = () => {
           Sign in with your data that you entered during your registration
         </p>
         <form>
+          <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 text-center hidden">
+            <span>Wrong username or password</span>
+          </div>
           <div className="flex  flex-col">
             <label className="mb-2.5">Email</label>
             <input

@@ -4,12 +4,13 @@ import React from "react";
 
 const NowShowing = () => {
   const [Char, Setchar] = React.useState([]); //data awal berupa array
-  console.log(Char)
+  console.log(Char);
   React.useEffect(() => {
     GetMovies().then((data) => {
       Setchar(data);
     });
   }, []); //[] standar kode dijalankan ketika page nya direfresh
+
 
   const GetMovies = async () => {
     const { data } = await axios.get("http://localhost:8888/movies/nowShowing");
@@ -31,7 +32,8 @@ const NowShowing = () => {
             {Char.map((movie) => (
               <div className="relative group" key={movie.id}>
                 <div className="flex flex-col p-8 border-2 items-center rounded-lg border-[#0E5E6F] text-center hover:bg-white">
-                  <img className="rounded-lg"
+                  <img
+                    className="rounded-lg"
                     src={movie.picture}
                     alt={movie.title}
                     title={movie.title}
@@ -43,9 +45,9 @@ const NowShowing = () => {
                     <div className="flex flex-row">
                       <div className="text-sm w-[130px]">{movie.genre}</div>
                     </div>
-                    <button className="bg-[#3A8891] hover:bg-[#0E5E6F] py-2 px-4 text-medium text-white rounded-md font-medium w-[130px]">
-                    <Link to="/MovieDetail">Details</Link>
-                    </button>
+                    <Link to={"/MovieDetail/"+movie.id} className="bg-[#3A8891] hover:bg-[#0E5E6F] py-2 px-4 text-medium text-white rounded-md font-medium w-[130px]">
+                      Details
+                    </Link>
                   </div>
                 </div>
               </div>
