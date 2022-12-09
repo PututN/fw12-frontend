@@ -16,6 +16,7 @@ import TicketResultActive from "./pages/TicketResultActive";
 import TicketResultUsed from "./pages/TickedResultUsed";
 import TicketResultExpired from "./pages/TicketResultExpired";
 import ManageMovie from "./pages/ManageMovie"
+import Dashboard from "./pages/Dashboard"
 
 const App = () => {
   return (
@@ -37,6 +38,7 @@ const App = () => {
         <Route path="/TicketResultUsed" element={<TicketResultUsed />} />
         <Route path="/TicketResultExpired" element={<TicketResultExpired />} />
         <Route path="/ManageMovie" element={<ManageMovie />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
       </Routes>
     </BrowserRouter>
   );

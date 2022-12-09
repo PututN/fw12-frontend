@@ -155,14 +155,14 @@ const ManageMovie = () => {
                       <div className="text-xs text-slate-400">{item.genre}</div>
                     </div>
                     <Link
-                      to="/MovieDetail/"
-                      className="border-[#3A8891] border border-2 text-[#3A8891] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                      to="#"
+                      className="border-[#3A8891] hover:drop-shadow-2xl shadow-black border border-2 text-[#3A8891] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
                     >
                       Update{" "}
                     </Link>
                     <Link
-                      to="/MovieDetail/"
-                      className="border-[#ED2E7E] border border-2 text-[#ED2E7E] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                      to="#"
+                      className="border-[#ED2E7E]  hover:drop-shadow-2xl shadow-black border border-2 text-[#ED2E7E] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
                     >
                       Delete{" "}
                     </Link>
