@@ -65,7 +65,7 @@ const UpComingMovies = () => {
           <div className="flex gap-8 mt-8 px-8 overflow-x-auto">
             {Char.map((item) => (
               <div className="relative" key={item.id}>
-                <div className="flex flex-col p-8 border-2 items-center border-[#0E5E6F] rounded-lg text-center hover:bg-white w-full h-full">
+                <div className="flex flex-col p-8 border-2 items-center border-[#FAAB78] rounded-lg text-center hover:bg-white w-full h-full">
                   <img
                     src={item.picture}
                     alt={item.title}

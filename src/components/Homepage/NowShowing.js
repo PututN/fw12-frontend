@@ -23,7 +23,7 @@ const NowShowing = () => {
         {/* Movie now showing */}
         <div className="container mx-auto">
           <div className="flex flex-row justify-between items-center">
-            <div className="text-2xl font-semibold">Now Showing</div>
+            <div className="text-2xl font-bold">Now Showing</div>
             <div className="text-medium font-semibold">
               <Link to="/ViewAll">View All</Link>
             </div>
@@ -31,7 +31,7 @@ const NowShowing = () => {
           <div className="flex gap-8 mt-8 px-8 overflow-x-auto">
             {Char.map((movie) => (
               <div className="relative group" key={movie.id}>
-                <div className="flex flex-col p-8 border-2 items-center rounded-lg border-[#0E5E6F] text-center hover:bg-white">
+                <div className="flex flex-col p-8 border-2 border-[#FAAB78] items-center rounded-lg  text-center hover:bg-white">
                   <img
                     className="rounded-lg"
                     src={movie.picture}
