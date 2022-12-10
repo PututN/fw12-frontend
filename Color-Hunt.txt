@@ -13,6 +13,8 @@ https://colorhunt.co/palette/f2debaffefd60e5e6f3a8891
 bg-[#665A48] hover:bg-[#3A8891]
 bg-[#0E5E6F] hover:bg-[#3A8891] text-white
 
+Color Border picture border-2 border-[#FAAB78]
+
 font color judul profile page text-[#14142B]
 
 NowShowing : http://localhost:8888/movies/nowShowing

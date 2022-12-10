@@ -23,10 +23,10 @@ const ManageMovie = () => {
     <div>
       <NavAdmin />
       <div className="bg-[#F2DEBA] px-20 py-20">
-        <h1 className="text-xl font-bold mb-6">Form Movie</h1>
+        <h1 className="font-bold text-2xl mb-6">Form Movie</h1>
         <div className="bg-white gap-10 p-10">
           <div className="flex gap-10">
-            <div className="p-5 border-2 rounded-xl h-fit flex w-fit">
+            <div className="p-5 border-2 border-[#FAAB78] rounded-xl h-fit flex w-fit">
               <img src={picture} alt="" className="w-46 bg-cover" />
             </div>
             <div className="w-full flex-1">
