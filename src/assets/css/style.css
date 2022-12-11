@@ -1,0 +1,3 @@
+.input {
+    @apply border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3];
+}

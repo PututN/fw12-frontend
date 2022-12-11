@@ -40,7 +40,7 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Write your first name"
-              className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
+              className="input"
             ></input>
           </div>
           <div className="flex  flex-col mt-[15px]">
@@ -48,7 +48,7 @@ const Signup = () => {
             <input
               type="text"
               placeholder="Write your last name"
-              className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
+              className="input"
             ></input>
           </div>
           <div className="flex  flex-col mt-[15px]">
@@ -56,7 +56,7 @@ const Signup = () => {
             <input
               type="number"
               placeholder="Write your phone number"
-              className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
+              className="input"
             ></input>
           </div>
           <div className="flex  flex-col mt-[15px]">
@@ -64,7 +64,7 @@ const Signup = () => {
             <input
               type="email"
               placeholder="Write your email"
-              className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
+              className="input"
             ></input>
           </div>
 
@@ -73,7 +73,7 @@ const Signup = () => {
             <input
               type="Password"
               placeholder="Write your password"
-              className="border-2 border-[##DEDEDE] p-2 rounded-xl bg-[#FEFCF3]"
+              className="input"
             ></input>
           </div>
 

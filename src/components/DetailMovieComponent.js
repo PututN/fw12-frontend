@@ -28,7 +28,7 @@ const DetailMovie = () => {
   return (
     <>
       <div className="px-[80px] py-[30px] flex">
-        <div className="border-2 border-black rounded-xl">
+        <div className="border-2 border-[#FAAB78] rounded-xl">
           <div className="p-[20px]">
             <img
               className="rounded-xl w-[236px]"
