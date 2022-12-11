@@ -47,7 +47,7 @@ const NavBarAfterLogin = () => {
           <img src={profileImage} alt="profile" />
           <div className="hidden group-hover:block absolute right-0 border-2 border-[#dedede] bg-[#FEFCF3] py-2 pl-4 pr-8">
             <div>
-              <Link to="#">Profile</Link>
+              <Link to="/Profile">Profile</Link>
             </div>
             <div>
               <Link to="/Signin">Logout</Link>

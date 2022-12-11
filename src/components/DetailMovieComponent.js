@@ -5,7 +5,6 @@ import React from "react";
 
 const DetailMovie = () => {
   const { id } = useParams();
-  console.log(id);
   const [Char, SetChar] = React.useState({});
   React.useEffect(() => {
     getDetailChar();
@@ -13,7 +12,6 @@ const DetailMovie = () => {
   const getDetailChar = async () => {
     const { data } = await axios.get("http://localhost:8888/movies/" + id);
     SetChar(data.results);
-    console.log(data.results);
   };
   
   let duration = Char?.duration

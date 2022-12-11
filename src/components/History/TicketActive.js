@@ -20,7 +20,7 @@ const TicketActive = () => {
             Ticket In Active
           </div>
           <Link
-            to="/"
+            to="/TicketResultActive"
             className="flex items-center leading-8	text-lg	text-[#AAAAAA]"
           >
             See Details

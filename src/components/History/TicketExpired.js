@@ -13,14 +13,14 @@ const TicketActive = () => {
           <div className="flex items-center">
             <img src={Cinemas} alt="" />
           </div>
-        </div>
+        </div> 
         <div className="border-2 border my-5"></div>
         <div className="flex justify-between">
           <div className="bg-[#6E7191] text-white rounded-md text-center p-2 w-1/4">
             Ticket Expired
           </div>
           <Link
-            to="/"
+            to="/TicketResultExpired"
             className="flex items-center leading-8	text-lg	text-[#AAAAAA]"
           >
             See Details

@@ -71,7 +71,7 @@ const ViewAllComponent = () => {
           {month.map((item, index) => (
             <button
               key={`month-${index}`}
-              className="border-2 w-[100px] border-[#FAAB78] rounded-md flex justify-center items-center p-2 hover:bg-[#0E5E6F] text-[#FFDCA9] hover:text-white font-bold hover:shadow-lg bg-[#3A8891]"
+              className="border-2 w-[100px] rounded-md flex justify-center items-center p-2 hover:bg-[#0E5E6F] text-white hover:text-white font-bold hover:shadow-lg bg-[#F8B400]"
             >
               {item}
             </button>

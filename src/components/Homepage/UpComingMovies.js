@@ -56,7 +56,7 @@ const UpComingMovies = () => {
             {month.map((item, index) => (
               <button
                 key={`month-${index}`}
-                className="border-2 w-[100px] border-[#0E5E6F] rounded-md flex justify-center items-center p-2 hover:bg-[#FFDCA9] text-[#3A8891] hover:text-white font-bold hover:shadow-lg"
+                className="w-[100px] border-[#0E5E6F] rounded-md flex justify-center items-center p-2 hover:bg-[#0E5E6F] text-white font-bold hover:shadow-lg bg-[#F8B400]"
               >
                 {item}
               </button>

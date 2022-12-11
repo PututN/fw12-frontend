@@ -15,6 +15,8 @@ bg-[#0E5E6F] hover:bg-[#3A8891] text-white
 
 Color Border picture border-2 border-[#FAAB78]
 
+color bg month #F8B400
+
 font color judul profile page text-[#14142B]
 
 Responsive

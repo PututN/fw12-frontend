@@ -10,10 +10,10 @@ import SosmedYt from "../assets/images/logo-yt.png";
 
 const Footer = () => {
   return (
-    <div className="flex px-[80px] py-[30px] items-center justify-center">
+    <div className="px-[80px] py-[30px] max-[425px]:py-10 max-[425px]:px-10">
       <div className="flex flex-col w-full">
-        <div className="flex">
-          <div className="flex-1 mr-8">
+        <div className="flex max-[425px]:flex-col">
+          <div className="flex-1 mr-8 max-[425px]:mb-3">
             <div>
               <Link to="/">
                 <img src={Logo} alt="Cinemnar" className="h-20 w-auto"></img>
