@@ -14,9 +14,10 @@ import History from "./History";
 import TicketResultActive from "./TicketResultActive";
 import TicketResultUsed from "./TickedResultUsed";
 import TicketResultExpired from "./TicketResultExpired";
-import ManageMovie from "./ManageMovie"
-import Dashboard from "./Dashboard"
-import ManageSchedule from "./ManageSchedule"
+import ManageMovie from "./ManageMovie";
+import Dashboard from "./Dashboard";
+import ManageSchedule from "./ManageSchedule";
+import PrivateRoute from "../components/PrivateRoute";
 
 const Main = () => {
   return (
@@ -31,7 +32,14 @@ const Main = () => {
         <Route path="/MovieDetail/:id" element={<MovieDetail />} />
         <Route path="/OrderPage" element={<OrderPage />} />
         <Route path="/PaymentPage" element={<PaymentPage />} />
-        <Route path="/Profile" element={<ProfilePage />} />
+        <Route
+          path="/Profile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        />
         <Route path="/History" element={<History />} />
         <Route path="/TicketResultActive" element={<TicketResultActive />} />
         <Route path="/TicketResultUsed" element={<TicketResultUsed />} />

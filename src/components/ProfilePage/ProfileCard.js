@@ -1,6 +1,9 @@
 import profile from "../../assets/images/profile.png";
+import { useDispatch } from "react-redux";
+import {logout as logoutAction} from '../../redux/reducers/auth'
 
 const ProfileCard = () => {
+  const dispatch=useDispatch()
   return (
     <>
       <div className="bg-white rounded-lg">
@@ -21,7 +24,7 @@ const ProfileCard = () => {
         </div>
         <div className="border border-2 w-full mb-5 border-[#F2DEBA]" />
         <div className="py-8 px-8">
-          <button className="w-full py-3 rounded-lg text-white bg-[#0E5E6F] hover:bg-[#3A8891] ">Logout</button>
+          <button type='button' onClick={() => dispatch(logoutAction())} className="w-full py-3 rounded-lg text-white bg-[#0E5E6F] hover:bg-[#3A8891] ">Logout</button>
         </div>
       </div>
     </>

@@ -1,15 +1,19 @@
-import ProfilePageComponent from "../components/ProfilePage/ProfilePageComponent"
+import ProfilePageComponent from "../components/ProfilePage/ProfilePageComponent";
 import Footer from "../components/Footer";
 import NavBarAfterLogin from "../components/NavBarAfterLogin";
+import Navbar from "../components/Navbar";
+import { useSelector } from "react-redux";
 
 const ProfilePage = () => {
-    return(
-        <>
-        <NavBarAfterLogin />
-        <ProfilePageComponent />
-        <Footer />
-        </>
-    )
-}
+  const token = useSelector((state) => state.auth.token);
 
-export default ProfilePage
+  return (
+    <>
+      {token ? <NavBarAfterLogin /> : <Navbar />}
+      <ProfilePageComponent />
+      <Footer />
+    </>
+  );
+};
+
+export default ProfilePage;
