@@ -3,8 +3,11 @@ import Logo from "../assets/images/logo-cinemnar.jpg";
 import searchIcon from "../assets/images/nav-search.png";
 import profileImage from "../assets/images/nav-photo.png";
 import NavMenu from "../assets/images/nav-menu.png";
+import { useSelector, useDispatch } from "react-redux";
+import { logout as logoutAction } from "../redux/reducers/auth";
 
 const NavBarAfterLogin = () => {
+  const dispatch = useDispatch();
   return (
     <nav className="flex px-[80px] py-[30px] items-center relative">
       <div className="flex items-center flex-1">
@@ -50,7 +53,11 @@ const NavBarAfterLogin = () => {
               <Link to="/Profile">Profile</Link>
             </div>
             <div>
-              <Link to="/Signin">Logout</Link>
+             
+                <button type="button" onClick={() => dispatch(logoutAction())}>
+                  Logout
+                </button>
+              
             </div>
           </div>
         </div>
@@ -87,7 +94,11 @@ const NavBarAfterLogin = () => {
               <div className="border border-1 mt-3 mb-3"></div>
             </div>
             <div className="">
-              <Link to="/Signin">Logout</Link>
+            
+                <button type="button" onClick={() => dispatch(logoutAction())}>
+                  Logout
+                </button>
+
               <div className="border border-1 mt-3 mb-3"></div>
             </div>
             <div>

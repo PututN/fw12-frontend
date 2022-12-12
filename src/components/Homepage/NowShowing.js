@@ -4,7 +4,6 @@ import React from "react";
 
 const NowShowing = () => {
   const [Char, Setchar] = React.useState([]); //data awal berupa array
-  console.log(Char);
   React.useEffect(() => {
     GetMovies().then((data) => {
       Setchar(data);

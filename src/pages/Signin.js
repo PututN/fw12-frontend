@@ -3,21 +3,34 @@ import Background from "../assets/images/Logo-Bg.jpg";
 import Logo from "../assets/images/logo-cinemnar-removebg.png";
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+// import { login as loginAction } from "../redux/reducers/auth";
+import {loginAction} from '../redux/actions/auth'
 
 const Signin = () => {
-  const [alert, setAlert] = React.useState(false)
+  const dispatch = useDispatch();
   const navigate = useNavigate()
-
-  const LoginReq = (event) => {
-    const {value:email} = event.target.email;
-    const {value:password} = event.target.password;
-    if(email === 'admin@mail.com' && password === '1234') {
-      navigate('/Home')
-    } else {
-      setAlert(true)
-    }
+  const login = (event) => {
     event.preventDefault();
+    const {value : email} = event.target.email
+    const {value : password} = event.target.password
+    console.log(email, password)
+    dispatch(loginAction({email, password}));
+    navigate('/')
   };
+  // const [alert, setAlert] = React.useState(false)
+  // const navigate = useNavigate()
+
+  // const LoginReq = (event) => {
+  //   const {value:email} = event.target.email;
+  //   const {value:password} = event.target.password;
+  //   if(email === 'admin@mail.com' && password === '1234') {
+  //     navigate('/Home')
+  //   } else {
+  //     setAlert(true)
+  //   }
+  //   event.preventDefault();
+  // };
   return (
     <div className="flex">
       {/* left */}
@@ -55,14 +68,12 @@ const Signin = () => {
         <p className="text-[18px] mb-5 font-light">
           Sign in with your data that you entered during your registration
         </p>
-        <form onSubmit={LoginReq}>
-          {alert && <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 text-center mb-2.5 font-semibold">
+        <form onSubmit={login}>
+          <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 text-center mb-2.5 font-semibold hidden">
             <span>Wrong username or password</span>
-          </div>}
+          </div>
           <div className="flex  flex-col">
-            <label className="mb-2.5" >
-              Email
-            </label>
+            <label className="mb-2.5">Email</label>
             <input
               type="email"
               name="email"
@@ -71,9 +82,7 @@ const Signin = () => {
             ></input>
           </div>
           <div className="flex  flex-col mt-[15px]">
-            <label className="mb-2.5">
-              Password
-            </label>
+            <label className="mb-2.5">Password</label>
             <input
               type="Password"
               name="password"
@@ -84,7 +93,6 @@ const Signin = () => {
           <div className="bg-[#FFDCA9] text-center mt-[32px] rounded-xl p-2 mb-5">
             <button type="submit" className="font-bold">
               Sign In
-
             </button>
             {/* <Link to="/Home" className="font-bold">
               Sign In
