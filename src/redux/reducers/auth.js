@@ -19,7 +19,6 @@ const authReducer = createSlice({
   extraReducers: (build) => {
     build.addCase(loginAction.fulfilled, (state, { payload }) => {
       state.token = payload;
-      console.log(payload);
     });
   },
 });

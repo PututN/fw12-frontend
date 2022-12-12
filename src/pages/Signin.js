@@ -14,9 +14,11 @@ const Signin = () => {
     event.preventDefault();
     const {value : email} = event.target.email
     const {value : password} = event.target.password
-    console.log(email, password)
-    dispatch(loginAction({email, password}));
-    navigate('/')
+    const cb = () => {
+      navigate('/')
+
+    }
+    dispatch(loginAction({email, password, cb}));
   };
   // const [alert, setAlert] = React.useState(false)
   // const navigate = useNavigate()

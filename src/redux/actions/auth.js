@@ -3,9 +3,15 @@ import axios from "axios";
 
 export const loginAction = createAsyncThunk(
   "auth/loginAsync",
-  async ({ email, password }) => {
-    const { data } = await axios.post("http://localhost:8888/auth/login", { email, password });
-    console.log(data)
-    return data.result.token;
+  async ({ email, password, cb }) => {
+    try {
+      const { data } = await axios.post("http://localhost:8888/auth/login", { email, password });
+      cb()
+      return data.result.token;
+    } catch (err) {
+      console.log(err)
+      throw err
+    }
+
   }
 );
