@@ -4,7 +4,7 @@ import searchIcon from "../assets/images/nav-search.png";
 import profileImage from "../assets/images/nav-photo.png";
 import NavMenu from "../assets/images/nav-menu.png";
 import { useSelector, useDispatch } from "react-redux";
-import { logout as logoutAction } from "../redux/reducers/auth";
+import { logout as logoutAction } from "../redux/reducers/authReducers";
 
 const NavBarAfterLogin = () => {
   const dispatch = useDispatch();

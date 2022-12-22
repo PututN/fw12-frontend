@@ -1,24 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Background from "../assets/images/Logo-Bg.jpg";
 import Logo from "../assets/images/logo-cinemnar-removebg.png";
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-// import { login as loginAction } from "../redux/reducers/auth";
-import {loginAction} from '../redux/actions/auth'
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { loginAction } from "../redux/actions/authActions";
 
 const Signin = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate()
-  const login = (event) => {
+  const navigate = useNavigate();
+  const [value, setValue] = useState({
+    email: "",
+    password: "",
+  });
+  const { error, loading } = useSelector((state) => state.auth);
+  const handleSubmit = (event) => {
     event.preventDefault();
-    const {value : email} = event.target.email
-    const {value : password} = event.target.password
-    const cb = () => {
-      navigate('/')
-
-    }
-    dispatch(loginAction({email, password, cb}));
+    dispatch(loginAction({ ...value, cb: () => navigate("/") }));
   };
   // const [alert, setAlert] = React.useState(false)
   // const navigate = useNavigate()
@@ -70,10 +67,12 @@ const Signin = () => {
         <p className="text-[18px] mb-5 font-light">
           Sign in with your data that you entered during your registration
         </p>
-        <form onSubmit={login}>
-          <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 text-center mb-2.5 font-semibold hidden">
-            <span>Wrong username or password</span>
+        {error && (
+          <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 font-white text-center mb-2.5 font-semibold">
+            {error}
           </div>
+        )}
+        <form onSubmit={handleSubmit}>
           <div className="flex  flex-col">
             <label className="mb-2.5">Email</label>
             <input
@@ -81,6 +80,10 @@ const Signin = () => {
               name="email"
               placeholder="Write your email"
               className="input"
+              onChange={(event) =>
+                setValue({ ...value, email: event.target.value })
+              }
+              value={value.email}
             ></input>
           </div>
           <div className="flex  flex-col mt-[15px]">
@@ -90,16 +93,18 @@ const Signin = () => {
               name="password"
               placeholder="Write your password"
               className="input"
+              onChange={(event) =>
+                setValue({ ...value, password: event.target.value })
+              }
+              value={value.password}
             ></input>
           </div>
-          <div className="bg-[#FFDCA9] text-center mt-[32px] rounded-xl p-2 mb-5">
-            <button type="submit" className="font-bold">
-              Sign In
-            </button>
-            {/* <Link to="/Home" className="font-bold">
-              Sign In
-            </Link> */}
-          </div>
+          <button
+            type="submit"
+            disabled={loading}
+            className=" w-full font-bold text-center mt-[32px] rounded-xl p-2 mb-5 bg-[#0E5E6F] hover:bg-[#3A8891] text-white">
+            Sign In
+          </button>
           <div className="text-center text-[16px]">
             <p className="mb-2.5 font-light">
               Forgot your password?{" "}

@@ -1,6 +1,6 @@
 import profile from "../../assets/images/profile.png";
 import { useDispatch } from "react-redux";
-import {logout as logoutAction} from '../../redux/reducers/auth'
+import {logout as logoutAction} from '../../redux/reducers/authReducers'
 
 const ProfileCard = () => {
   const dispatch=useDispatch()
