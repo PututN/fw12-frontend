@@ -4,18 +4,36 @@ import Logo from "../assets/images/logo-cinemnar-removebg.png";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../redux/actions/authActions";
+// import {Icon} from "@iconify/react"
+import { Formik, Form, Field } from "formik";
+import * as Yup from "yup";
+import YupPassword from "yup-password";
+
+YupPassword(Yup);
+
+const LoginSchema = Yup.object().shape({
+  email: Yup.string().email("Invalid email").required("Required"),
+  password: Yup.string()
+    .password()
+    .min(6, "Min lenght 6 Char")
+    .minLowercase(1, "Min lowercase 1")
+    .minUppercase(1, "min uppercase 1")
+    .minNumbers(1, "Min Numbers 1")
+    .required("Required"),
+});
 
 const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [value, setValue] = useState({
-    email: "",
-    password: "",
-  });
+  // const [value, setValue] = useState({
+  //   email: "",
+  //   password: "",
+  // });
   const { error, loading } = useSelector((state) => state.auth);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    dispatch(loginAction({ ...value, cb: () => navigate("/") }));
+  const handleSubmit = (value) => {
+    const email = value.email;
+    const password = value.password;
+    dispatch(loginAction({ email, password, cb: () => navigate("/") }));
   };
   // const [alert, setAlert] = React.useState(false)
   // const navigate = useNavigate()
@@ -72,60 +90,75 @@ const Signin = () => {
             {error}
           </div>
         )}
-        <form onSubmit={handleSubmit}>
-          <div className="flex  flex-col">
-            <label className="mb-2.5">Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Write your email"
-              className="input"
-              onChange={(event) =>
-                setValue({ ...value, email: event.target.value })
-              }
-              value={value.email}
-            ></input>
-          </div>
-          <div className="flex  flex-col mt-[15px]">
-            <label className="mb-2.5">Password</label>
-            <input
-              type="Password"
-              name="password"
-              placeholder="Write your password"
-              className="input"
-              onChange={(event) =>
-                setValue({ ...value, password: event.target.value })
-              }
-              value={value.password}
-            ></input>
-          </div>
-          <button
-            type="submit"
-            disabled={loading}
-            className=" w-full font-bold text-center mt-[32px] rounded-xl p-2 mb-5 bg-[#0E5E6F] hover:bg-[#3A8891] text-white">
-            Sign In
-          </button>
-          <div className="text-center text-[16px]">
-            <p className="mb-2.5 font-light">
-              Forgot your password?{" "}
-              <Link
-                to="/ForgotPassword"
-                className="underline underline-offset-4 text-[#46C2CB] font-medium"
+        <Formik initialValues={{email:"",password:""}} onSubmit={handleSubmit} validationSchema={LoginSchema}>
+          {({ errors, touched, dirty }) => (
+            <Form>
+              <div className="flex  flex-col">
+                <label className="mb-2.5" htmlFor="email">
+                  Email
+                </label>
+                <Field
+                  type="email"
+                  name="email"
+                  placeholder="Write your email"
+                  className="input"
+                  // onChange={(event) =>
+                  //   setValue({ ...value, email: event.target.value })
+                  // }
+                  // value={value.email}
+                ></Field>
+                {errors.email && touched.email ? (
+                  <div className="text-red-500">{errors.email}</div>
+                ) : null}
+              </div>
+              <div className="flex  flex-col mt-[15px]">
+                <label className="mb-2.5" htmlFor="password">
+                  Password
+                </label>
+                <Field
+                  type="Password"
+                  name="password"
+                  placeholder="Write your password"
+                  className="input"
+                  // onChange={(event) =>
+                  //   setValue({ ...value, password: event.target.value })
+                  // }
+                  // value={value.password}
+                ></Field>
+                {errors.password && touched.password ? (
+                  <div className="text-red-500">{errors.password}</div>
+                ) : null}
+              </div>
+              <button
+                type="submit"
+                disabled={!dirty || loading}
+                className=" w-full font-bold text-center mt-[32px] rounded-xl p-2 mb-5 bg-[#0E5E6F] hover:bg-[#3A8891] text-white"
               >
-                Reset now
-              </Link>
-            </p>
-            <p className="font-light">
-              Don't have an account?{" "}
-              <Link
-                to="/Signup"
-                className="underline underline-offset-4 text-[#46C2CB] font-medium"
-              >
-                Sign Up
-              </Link>
-            </p>
-          </div>
-        </form>
+                Sign In
+              </button>
+              <div className="text-center text-[16px]">
+                <p className="mb-2.5 font-light">
+                  Forgot your password?{" "}
+                  <Link
+                    to="/ForgotPassword"
+                    className="underline underline-offset-4 text-[#46C2CB] font-medium"
+                  >
+                    Reset now
+                  </Link>
+                </p>
+                <p className="font-light">
+                  Don't have an account?{" "}
+                  <Link
+                    to="/Signup"
+                    className="underline underline-offset-4 text-[#46C2CB] font-medium"
+                  >
+                    Sign Up
+                  </Link>
+                </p>
+              </div>
+            </Form>
+          )}
+        </Formik>
       </div>
     </div>
   );
