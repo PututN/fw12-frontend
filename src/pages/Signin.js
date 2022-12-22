@@ -90,7 +90,11 @@ const Signin = () => {
             {error}
           </div>
         )}
-        <Formik initialValues={{email:"",password:""}} onSubmit={handleSubmit} validationSchema={LoginSchema}>
+        <Formik
+          initialValues={{ email: "", password: "" }}
+          onSubmit={handleSubmit}
+          validationSchema={LoginSchema}
+        >
           {({ errors, touched, dirty }) => (
             <Form>
               <div className="flex  flex-col">
