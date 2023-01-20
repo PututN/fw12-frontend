@@ -1,16 +1,16 @@
 import Background from "../assets/images/Logo-Bg.jpg";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import Logo from "../assets/images/logo-cinemnar-removebg.png";
-// import { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { setErr } from "../redux/reducers/authReducers";
 import { useDispatch, useSelector } from "react-redux";
 import { registerAction } from "../redux/actions/authActions";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
+import { Eye, EyeOff } from "react-feather";
 
 YupPassword(Yup);
-// const phoneRegExp =
-//   /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const RegisterSchema = Yup.object().shape({
   firstName: Yup.string().required("Required"),
@@ -18,9 +18,9 @@ const RegisterSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Required"),
   phoneNumber: Yup.string()
     .required("required")
-    // .matches(phoneRegExp, "Phone number is not valid")
+    .matches(/^[0-9]+$/, "Phone Number must be only number")
     .min(10, "Minimal 10 number")
-    .max(13, "Minimal 13 number"),
+    .max(13, "Max 13 number"),
   password: Yup.string()
     .password()
     .min(6, "Min lenght 6 Char")
@@ -33,30 +33,44 @@ const RegisterSchema = Yup.object().shape({
 const Signup = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { error, loading } = useSelector((state) => state.auth);
-  // const [value, setValue] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   phoneNumber: "",
-  //   password: "",
-  // });
-  const handleSubmit = (value) => {
-    const firstName = value.firstName;
-    const lastName = value.lastName;
-    const email = value.email;
-    const phoneNumber = value.phoneNumber;
-    const password = value.password;
-    dispatch(
-      registerAction({
-        firstName,
-        lastName,
-        email,
-        phoneNumber,
-        password,
-        cb: () => navigate("/"),
-      })
-    );
+  const error = useSelector((state) => state.auth.error);
+  const loading = useSelector((state) => state.auth.loading);
+  const token = useSelector((state) => state.auth.token);
+
+  useEffect(() => {
+    // dispatch(cancelTransaction());
+    if (error) {
+      setTimeout(() => {
+        dispatch(setErr());
+      }, 3000);
+    }
+    if (token) {
+      navigate("/");
+    }
+  }, [error]);
+
+  const [showPassword, setShowPassword] = React.useState(false);
+
+  const handleSubmit = async (value) => {
+    try {
+      const firstName = value.firstName;
+      const lastName = value.lastName;
+      const email = value.email;
+      const phoneNumber = value.phoneNumber;
+      const password = value.password;
+      dispatch(
+        registerAction({
+          firstName,
+          lastName,
+          email,
+          phoneNumber,
+          password,
+          cb: () => navigate("/"),
+        })
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -96,11 +110,6 @@ const Signup = () => {
         <p className="text-[18px] mb-[38px] font-light max-[768px]:">
           Fill your additional details
         </p>
-        {error && (
-          <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 text-white text-center mb-2.5 font-semibold">
-            {error}
-          </div>
-        )}
         <Formik
           initialValues={{
             firstName: "",
@@ -121,10 +130,6 @@ const Signup = () => {
                   placeholder="Write your first name"
                   className="input"
                   name="firstName"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, firstName: event.target.value })
-                  // }
-                  // value={value.firstName}
                 ></Field>
                 {errors.firstName && touched.firstName ? (
                   <div className="text-red-500">{errors.firstName}</div>
@@ -137,10 +142,6 @@ const Signup = () => {
                   placeholder="Write your last name"
                   className="input"
                   name="lastName"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, lastName: event.target.value })
-                  // }
-                  // value={value.lastName}
                 ></Field>
                 {errors.lastName && touched.lastName ? (
                   <div className="text-red-500">{errors.lastName}</div>
@@ -149,14 +150,10 @@ const Signup = () => {
               <div className="flex  flex-col mt-[15px]">
                 <label className="mb-2.5">Phone Number</label>
                 <Field
-                  type="number"
+                  type="text"
                   placeholder="Write your phone number"
                   className="input"
                   name="phoneNumber"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, phoneNumber: event.target.value })
-                  // }
-                  // value={value.phoneNumber}
                 ></Field>
                 {errors.phoneNumber && touched.phoneNumber ? (
                   <div className="text-red-500">{errors.phoneNumber}</div>
@@ -169,28 +166,31 @@ const Signup = () => {
                   placeholder="Write your email"
                   className="input"
                   name="email"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, email: event.target.value })
-                  // }
-                  // value={value.email}
                 ></Field>
                 {errors.email && touched.email ? (
                   <div className="text-red-500">{errors.email}</div>
                 ) : null}
               </div>
 
-              <div className="flex  flex-col mt-[15px]">
+              <div className="flex  flex-col mt-[15px] relative">
                 <label className="mb-2.5">Password</label>
                 <Field
-                  type="Password"
+                  type={showPassword ? "text" : "password"}
                   placeholder="Write your password"
                   className="input"
                   name="password"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, password: event.target.value })
-                  // }
-                  // value={value.password}
                 ></Field>
+                {showPassword ? (
+                  <Eye
+                    className="absolute top-12 right-5"
+                    onClick={() => setShowPassword(!showPassword)}
+                  />
+                ) : (
+                  <EyeOff
+                    className="absolute top-12 right-5"
+                    onClick={() => setShowPassword(!showPassword)}
+                  />
+                )}
                 {errors.password && touched.password ? (
                   <div className="text-red-500">{errors.password}</div>
                 ) : null}
@@ -199,16 +199,27 @@ const Signup = () => {
               <button
                 type="submit"
                 disabled={!dirty || loading}
-                className="font-bold bg-[#0E5E6F] hover:bg-[#3A8891] text-white text-center mt-[32px] rounded-xl p-2.5 mb-5 w-full"
+                className="font-bold btn bg-[#C539B4] mt-8  mb-5 w-full"
               >
                 Sign Up
               </button>
+              {loading && (
+                <div className="text-center mb-3 text-blue-600 font-bold">
+                  Loading...
+                </div>
+              )}
+              {error && (
+                <div className=" text-red-500 mb-3 text-center  font-bold">
+                  {error}
+                </div>
+              )}
+
               <div className="text-center text-[16px]">
                 <p className="mb-2.5 font-light">
                   Already have account ?{" "}
                   <Link
                     to="/Signin"
-                    className="underline underline-offset-4 text-[#46C2CB] font-medium"
+                    className="underline underline-offset-4  text-[#C539B4] font-medium"
                   >
                     Sign In
                   </Link>

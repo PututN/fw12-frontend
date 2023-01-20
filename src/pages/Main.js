@@ -30,8 +30,22 @@ const Main = () => {
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/ViewAll" element={<ViewAll />} />
         <Route path="/MovieDetail/:id" element={<MovieDetail />} />
-        <Route path="/OrderPage" element={<OrderPage />} />
-        <Route path="/PaymentPage" element={<PaymentPage />} />
+        <Route
+          path="/OrderPage"
+          element={
+            <PrivateRoute>
+              <OrderPage />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/PaymentPage"
+          element={
+            <PrivateRoute>
+              <PaymentPage />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/Profile"
           element={
@@ -40,10 +54,38 @@ const Main = () => {
             </PrivateRoute>
           }
         />
-        <Route path="/History" element={<History />} />
-        <Route path="/TicketResultActive" element={<TicketResultActive />} />
-        <Route path="/TicketResultUsed" element={<TicketResultUsed />} />
-        <Route path="/TicketResultExpired" element={<TicketResultExpired />} />
+        <Route
+          path="/History"
+          element={
+            <PrivateRoute>
+              <History />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/TicketResultActive"
+          element={
+            <PrivateRoute>
+              <TicketResultActive />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/TicketResultUsed"
+          element={
+            <PrivateRoute>
+              <TicketResultUsed />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/TicketResultExpired"
+          element={
+            <PrivateRoute>
+              <TicketResultExpired />
+            </PrivateRoute>
+          }
+        />
         <Route path="/ManageMovie" element={<ManageMovie />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/ManageSchedule" element={<ManageSchedule />} />

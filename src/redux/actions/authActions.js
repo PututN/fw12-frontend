@@ -1,59 +1,87 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import {createAsyncThunk} from '@reduxjs/toolkit';
+import http from '../../helpers/http';
 
 export const loginAction = createAsyncThunk(
-  "auth/login",
-  async ({ email, password, cb }, { rejectWithValue }) => {
+  'auth/loginAction',
+  async ({email, password, cb}, {rejectWithValue}) => {
     try {
-      console.log(email, password);
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      const res = await axios.post(
-        "http://localhost:8888/auth/login",
-        { email, password },
-        config
-      );
-      cb();
-      return res.data.result.token;
+      const {data} = await http().post('/auth/login', {email, password});
+      cb()
+      return data.result;
     } catch (error) {
-      console.log(error.response.data.message);
       if (error.response && error.response.data.message) {
         return rejectWithValue(error.response.data.message);
       } else {
         return rejectWithValue(error.message);
       }
     }
-  }
+  },
 );
 
 export const registerAction = createAsyncThunk(
-  "auth/register",
+  'auth/registerAction',
   async (
-    { firstName, lastName, phoneNumber, email, password, cb },
-    { rejectWithValue }
+    {firstName, lastName, email, password, phoneNumber,cb},
+    {rejectWithValue},
   ) => {
     try {
-      const config = {
-        headers: { "Content-Type": "application/json" },
-      };
-      const res = await axios.post("http://localhost:8888/auth/register", {
+      // console.log("lapor pak")
+      const {data} = await http().post('/auth/register', {
         firstName,
         lastName,
-        phoneNumber,
         email,
         password,
-      }, config);
+        phoneNumber,
+      });
       cb()
-      return res.data.results.token
+      return data.results;
     } catch (error) {
-      if(error.response && error.response.data.message) {
-        return rejectWithValue(error.response.data.message)
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
       } else {
-        return rejectWithValue(error.message)
+        return rejectWithValue(error.message);
       }
     }
-  }
+  },
+);
+
+export const forgotPasswordAction = createAsyncThunk(
+  'auth/forgotPassword',
+  async ({email}, {rejectWithValue}) => {
+    try {
+      // console.log('lapor pak');
+      const data = await http().post('/auth/forgotPassword', {email});
+      console.log('masuk pak');
+      return data.result;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
+);
+
+export const ResetPasswordAction = createAsyncThunk(
+  'auth/resetPassword',
+  async ({code, password, email, confirmPassword}, {rejectWithValue}) => {
+    try {
+      // console.log('lapor pak');
+      const data = await http().post('/auth/resetPassword', {
+        email,
+        confirmPassword,
+        code,
+        password,
+      });
+      console.log('masuk pak');
+      return data.result;
+    } catch (error) {
+      if (error.response && error.response.data.message) {
+        return rejectWithValue(error.response.data.message);
+      } else {
+        return rejectWithValue(error.message);
+      }
+    }
+  },
 );

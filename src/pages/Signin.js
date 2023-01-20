@@ -4,10 +4,11 @@ import Logo from "../assets/images/logo-cinemnar-removebg.png";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAction } from "../redux/actions/authActions";
-// import {Icon} from "@iconify/react"
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
 import YupPassword from "yup-password";
+import { setErr } from "../redux/reducers/authReducers";
+import { Eye, EyeOff } from "react-feather";
 
 YupPassword(Yup);
 
@@ -25,29 +26,31 @@ const LoginSchema = Yup.object().shape({
 const Signin = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [value, setValue] = useState({
-  //   email: "",
-  //   password: "",
-  // });
-  const { error, loading } = useSelector((state) => state.auth);
-  const handleSubmit = (value) => {
-    const email = value.email;
-    const password = value.password;
-    dispatch(loginAction({ email, password, cb: () => navigate("/") }));
+  const { error, loading, token } = useSelector((state) => state.auth);
+  const handleSubmit = async (value) => {
+    try {
+      const email = value.email;
+      const password = value.password;
+      dispatch(loginAction({ email, password, cb: () => navigate("/") }));
+    } catch (err) {
+      console.log(err);
+    }
   };
-  // const [alert, setAlert] = React.useState(false)
-  // const navigate = useNavigate()
+  const [showPassword, setShowPassword] = React.useState(false);
 
-  // const LoginReq = (event) => {
-  //   const {value:email} = event.target.email;
-  //   const {value:password} = event.target.password;
-  //   if(email === 'admin@mail.com' && password === '1234') {
-  //     navigate('/Home')
-  //   } else {
-  //     setAlert(true)
-  //   }
-  //   event.preventDefault();
-  // };
+  React.useEffect(() => {
+    // dispatch(cancelTransaction());
+    if (error) {
+      setTimeout(() => {
+        dispatch(setErr());
+      }, 3000);
+    }
+    if (token) {
+      navigate("/");
+    }
+
+  }, [error]);
+
   return (
     <div className="flex">
       {/* left */}
@@ -85,11 +88,6 @@ const Signin = () => {
         <p className="text-[18px] mb-5 font-light">
           Sign in with your data that you entered during your registration
         </p>
-        {error && (
-          <div className="bg-red-300 border border-red-700 rounded-md px-5 py-3 font-white text-center mb-2.5 font-semibold">
-            {error}
-          </div>
-        )}
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={handleSubmit}
@@ -115,20 +113,28 @@ const Signin = () => {
                   <div className="text-red-500">{errors.email}</div>
                 ) : null}
               </div>
-              <div className="flex  flex-col mt-[15px]">
+              <div className="flex  flex-col mt-[15px] relative">
                 <label className="mb-2.5" htmlFor="password">
                   Password
                 </label>
                 <Field
-                  type="Password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="Write your password"
                   className="input"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, password: event.target.value })
-                  // }
-                  // value={value.password}
                 ></Field>
+                {showPassword ? (
+                  <Eye
+                    className="absolute top-12 right-5"
+                    onClick={() => setShowPassword(!showPassword)}
+                  />
+                ) : (
+                  <EyeOff
+                    className="absolute top-12 right-5"
+                    onClick={() => setShowPassword(!showPassword)}
+                  />
+                )}
+
                 {errors.password && touched.password ? (
                   <div className="text-red-500">{errors.password}</div>
                 ) : null}
@@ -136,16 +142,27 @@ const Signin = () => {
               <button
                 type="submit"
                 disabled={!dirty || loading}
-                className=" w-full font-bold text-center mt-[32px] rounded-xl p-2 mb-5 bg-[#0E5E6F] hover:bg-[#3A8891] text-white"
+                className=" btn bg-[#C539B4] w-full my-5"
               >
                 Sign In
               </button>
+              {loading && (
+                <div className="text-center mb-3 text-blue-600 font-bold">
+                  Loading...
+                </div>
+              )}
+              {error && (
+                <div className=" text-red-500 mb-3 text-center  font-bold">
+                  {error}
+                </div>
+              )}
+
               <div className="text-center text-[16px]">
                 <p className="mb-2.5 font-light">
                   Forgot your password?{" "}
                   <Link
                     to="/ForgotPassword"
-                    className="underline underline-offset-4 text-[#46C2CB] font-medium"
+                    className="underline underline-offset-4 text-[#C539B4] font-medium"
                   >
                     Reset now
                   </Link>
@@ -154,7 +171,7 @@ const Signin = () => {
                   Don't have an account?{" "}
                   <Link
                     to="/Signup"
-                    className="underline underline-offset-4 text-[#46C2CB] font-medium"
+                    className="underline underline-offset-4 text-[#C539B4] font-medium"
                   >
                     Sign Up
                   </Link>

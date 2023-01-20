@@ -1,50 +1,96 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { loginAction, registerAction } from "../actions/authActions";
+import {createSlice} from '@reduxjs/toolkit';
+import {
+  loginAction,
+  registerAction,
+  forgotPasswordAction,
+  ResetPasswordAction,
+} from '../actions/authActions';
 
 const initialState = {
-  loading: false,
   token: null,
-  error: null,
-  success: false,
+  error: '',
+  email: '',
+  message: '',
+  loading: false,
 };
-const authSlice = createSlice({
-  name: "auth",
+
+const authReducer = createSlice({
+  name: 'auth',
   initialState,
   reducers: {
-    logout: (state, action) => {
-      state.token = null;
-      state.error = null;
-      state.loading = false;
+    setEmail: (state, action) => {
+      state.email = action.payload;
     },
+    logout: (state, action) => {
+      return initialState;
+    },
+    setErr:(state, action) => {
+      state.error = null
+    }
   },
-  extraReducers: (build) => {
+  extraReducers: build => {
+    // LOGIN
     build.addCase(loginAction.pending, (state, action) => {
       state.loading = true;
+    });
+    build.addCase(loginAction.fulfilled, (state, action) => {
+      // console.log(action)
+      state.token = action.payload.token;
+      state.loading = false;
+      state.error = null;
     });
     build.addCase(loginAction.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
     });
-    build.addCase(loginAction.fulfilled, (state, action) => {
-      state.token = action.payload;
-      state.error = null;
-      state.loading = false;
-    });
 
+
+    // REGISTER
     build.addCase(registerAction.pending, (state, action) => {
       state.loading = true;
+    });
+    build.addCase(registerAction.fulfilled, (state, action) => {
+      // console.log(action)
+      state.token = action.payload.token;
+      state.loading = false;
+      state.error = null;
     });
     build.addCase(registerAction.rejected, (state, action) => {
       state.error = action.payload;
       state.loading = false;
     });
-    build.addCase(registerAction.fulfilled, (state, action) => {
-      state.token = action.payload;
+
+    // FORGOT PASSWORD
+    build.addCase(forgotPasswordAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    build.addCase(forgotPasswordAction.fulfilled, (state, action) => {
+      state.loading = false;
       state.error = null;
+    });
+    build.addCase(forgotPasswordAction.rejected, (state, action) => {
+      state.error = action.payload;
       state.loading = false;
     });
 
+
+    // RESET PASSWORD
+    build.addCase(ResetPasswordAction.pending, (state, action) => {
+      state.loading = true;
+    });
+    build.addCase(ResetPasswordAction.fulfilled, (state, action) => {
+      console.log(action);
+      state.loading = false;
+      state.error = null;
+      state.message = action.payload;
+    });
+    build.addCase(ResetPasswordAction.rejected, (state, action) => {
+      state.error = action.payload;
+      state.loading = false;
+    });
   },
 });
-export const { logout } = authSlice.actions;
-export default authSlice.reducer;
+
+export const {logout, login, setEmail, setErr} = authReducer.actions;
+
+export default authReducer.reducer;
