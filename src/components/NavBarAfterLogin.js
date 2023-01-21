@@ -3,11 +3,30 @@ import Logo from "../assets/images/logo-cinemnar.jpg";
 import searchIcon from "../assets/images/nav-search.png";
 import profileImage from "../assets/images/nav-photo.png";
 import NavMenu from "../assets/images/nav-menu.png";
-import { useSelector, useDispatch } from "react-redux";
+import user from "../assets/images/user.png";
 import { logout as logoutAction } from "../redux/reducers/authReducers";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import http from "../helpers/http";
 
 const NavBarAfterLogin = () => {
   const dispatch = useDispatch();
+  const [profile, setProfile] = React.useState({});
+  const token = useSelector((state) => state.auth.token);
+  const fetchProfile = async () => {
+    try {
+      const response = await http(token).get("/profile");
+      setProfile(response?.data?.results);
+    } catch (error) {
+      if (error) console.log(error);
+    }
+  };
+  useEffect(() => {
+    if (token) {
+      fetchProfile();
+    }
+  }, [token]);
+
   return (
     <nav className="flex px-10 md:px-20 py-[30px] items-center relative">
       <div className="flex items-center flex-1">
@@ -47,17 +66,23 @@ const NavBarAfterLogin = () => {
           </div>
         </div>
         <div className="group relative">
-          <img src={profileImage} alt="profile" />
+          {profile?.picture ? (
+            <img
+              src={profile.picture}
+              alt="profile"
+              className="w-10 rounded-full"
+            />
+          ) : (
+            <img src={user} alt="profile" className="w-10 rounded-full" />
+          )}
           <div className="hidden group-hover:block absolute right-0 border-2 border-[#dedede] bg-[#FEFCF3] py-2 pl-4 pr-8">
             <div>
               <Link to="/Profile">Profile</Link>
             </div>
             <div>
-             
-                <button type="button" onClick={() => dispatch(logoutAction())}>
-                  Logout
-                </button>
-              
+              <button type="button" onClick={() => dispatch(logoutAction())}>
+                Logout
+              </button>
             </div>
           </div>
         </div>
@@ -94,10 +119,9 @@ const NavBarAfterLogin = () => {
               <div className="border border-1 mt-3 mb-3"></div>
             </div>
             <div className="">
-            
-                <button type="button" onClick={() => dispatch(logoutAction())}>
-                  Logout
-                </button>
+              <button type="button" onClick={() => dispatch(logoutAction())}>
+                Logout
+              </button>
 
               <div className="border border-1 mt-3 mb-3"></div>
             </div>

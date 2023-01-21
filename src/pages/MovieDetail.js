@@ -9,7 +9,7 @@ const MovieDetail = () => {
   const token = useSelector((state) => state.auth.token)
   return (
     <div>
-      {token ?<NavBarAfterLogin /> : <Navbar />  }
+      {token ? <NavBarAfterLogin /> : <Navbar />  }
       <div>
         <DetailMovieComponent />
         <ShowTimeComponent />

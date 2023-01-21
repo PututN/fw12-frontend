@@ -156,7 +156,7 @@ const Homepage = () => {
               <input
                 type="text"
                 placeholder="Type your Email"
-                classname="input"
+                className="input"
               ></input>
               <button className="py-3 px-6 rounded-md ml-3 font-bold btn bg-[#C539B4]">
                 Join Now

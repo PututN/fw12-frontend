@@ -5,7 +5,7 @@ import AccountPrivacy from './AccountPrivacy'
 
 const ProfilePageComponent = () =>{
     return (
-        <div className="bg-[#F2DEBA] px-20 py-20">
+        <div className="bg-[#F5D5AE] px-20 py-20">
         <div className="flex">
           <div className="w-1/4">
             <ProfileCard />

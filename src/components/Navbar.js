@@ -3,6 +3,8 @@ import Logo from "../assets/images/logo-cinemnar.jpg";
 import NavMenu from "../assets/images/nav-menu.png";
 
 const Navbar = () => {
+
+
   return (
     <nav className="flex px-10 md:px-20 py-[30px] items-center relative">
       <div className="flex items-center flex-1">
