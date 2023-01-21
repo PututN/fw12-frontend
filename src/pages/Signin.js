@@ -104,10 +104,6 @@ const Signin = () => {
                   name="email"
                   placeholder="Write your email"
                   className="input"
-                  // onChange={(event) =>
-                  //   setValue({ ...value, email: event.target.value })
-                  // }
-                  // value={value.email}
                 ></Field>
                 {errors.email && touched.email ? (
                   <div className="text-red-500">{errors.email}</div>

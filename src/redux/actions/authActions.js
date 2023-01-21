@@ -47,11 +47,10 @@ export const registerAction = createAsyncThunk(
 
 export const forgotPasswordAction = createAsyncThunk(
   'auth/forgotPassword',
-  async ({email}, {rejectWithValue}) => {
+  async ({email, cb}, {rejectWithValue}) => {
     try {
-      // console.log('lapor pak');
       const data = await http().post('/auth/forgotPassword', {email});
-      console.log('masuk pak');
+      cb()
       return data.result;
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -65,16 +64,17 @@ export const forgotPasswordAction = createAsyncThunk(
 
 export const ResetPasswordAction = createAsyncThunk(
   'auth/resetPassword',
-  async ({code, password, email, confirmPassword}, {rejectWithValue}) => {
+  async ({code, password, email, confirmPassword, cb}, {rejectWithValue}) => {
     try {
-      // console.log('lapor pak');
+      console.log('ini masuk dispatch')
       const data = await http().post('/auth/resetPassword', {
         email,
         confirmPassword,
         code,
         password,
       });
-      console.log('masuk pak');
+      cb()
+      console.log('ini keluar dispatch')
       return data.result;
     } catch (error) {
       if (error.response && error.response.data.message) {

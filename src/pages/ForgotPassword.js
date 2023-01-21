@@ -6,9 +6,9 @@ import * as Yup from "yup";
 import YupPassword from "yup-password";
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { setErr } from "../redux/reducers/authReducers";
+import { setErr, setEmail } from "../redux/reducers/authReducers";
 import http from "../helpers/http";
-import { setEmail } from "../redux/reducers/authReducers";
+import { forgotPasswordAction } from "../redux/actions/authActions";
 
 YupPassword(Yup);
 
@@ -35,12 +35,12 @@ const ForgotPassword = () => {
   const handleSubmit = async (value) => {
     try {
       const email = value.email;
-      console.log(email);
-      const data = await http().post("/auth/forgotPassword", { email });
+      dispatch(
+        forgotPasswordAction({ email, cb: () => navigate("/ResetPassword") })
+      );
       dispatch(setEmail({ email }));
-      return data.result;
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     }
   };
 

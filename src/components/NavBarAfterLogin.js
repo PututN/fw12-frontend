@@ -9,7 +9,7 @@ import { logout as logoutAction } from "../redux/reducers/authReducers";
 const NavBarAfterLogin = () => {
   const dispatch = useDispatch();
   return (
-    <nav className="flex px-[80px] py-[30px] items-center relative">
+    <nav className="flex px-10 md:px-20 py-[30px] items-center relative">
       <div className="flex items-center flex-1">
         <ul>
           <li>

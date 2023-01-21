@@ -30,27 +30,16 @@ const Footer = () => {
             <div>
               <h4 className="mb-8 font-bold text-[16px]">Explore</h4>
             </div>
-            <div>
-              <ul>
-                <li>
-                  <Link
-                    to="/"
-                    className="text-[#4E4B66] font-medium text-[14px]"
-                  >
-                    Home
-                  </Link>
-                </li>
-              </ul>
-              <ul>
-                <li>
-                  <Link
-                    to="/ViewAll"
-                    className="text-[#4E4B66] font-medium text-[14px]"
-                  >
-                    List Movie
-                  </Link>
-                </li>
-              </ul>
+            <div className="md:flex-col flex-row flex gap-5 mb-3">
+              <Link to="/" className="text-[#4E4B66] font-medium text-[14px]">
+                Home
+              </Link>
+              <Link
+                to="/ViewAll"
+                className="text-[#4E4B66] font-medium text-[14px]"
+              >
+                List Movie
+              </Link>
             </div>
           </div>
           <div className="flex-1 mr-8">
@@ -58,7 +47,7 @@ const Footer = () => {
               <h4 className="mb-8 font-bold text-[16px]">Our Sponsor</h4>
             </div>
             <div>
-              <ul>
+              <ul className="flex md:flex-col flex-row justify-center items-center gap-3">
                 <li className="mb-[25px]">
                   <img src={Sponsor1} alt="sponsor1" />
                 </li>
@@ -76,29 +65,31 @@ const Footer = () => {
               <h4 className="mb-8 font-bold text-[16px]">Follow Us</h4>
             </div>
             <div>
-              <ul>
+              <ul className="flex md:flex-col flex-row justify-center items-center gap-3">
                 <li className="flex mb-2.5">
                   <img src={SosmedFb} alt="Facebook" className="mr-[15px]" />
-                  <div> Cinemnar id</div>
+                  <div className="md:block hidden"> Cinemnar id</div>
                 </li>
                 <li className="flex mb-2.5">
                   <img src={SosmedIg} alt="Instagram" className="mr-[15px]" />
-                  <div> Cinemnar id</div>
+                  <div className="md:block hidden"> Cinemnar id</div>
                 </li>
                 <li className="flex mb-2.5">
                   <img src={SosmedTwit} alt="Twitter" className="mr-[15px]" />
-                  <div> Cinemnar id</div>
+                  <div className="md:block hidden"> Cinemnar id</div>
                 </li>
                 <li className="flex mb-2.5">
                   <img src={SosmedYt} alt="Youtube" className="mr-[15px]" />
-                  <div> Cinemnar id</div>
+                  <div className="md:block hidden"> Cinemnar id</div>
                 </li>
               </ul>
             </div>
           </div>
         </div>
         <div>
-          <p className="text-center	font-thin mt-2.5">© 2022 Cinemnar. All Rights Reserved.</p>
+          <p className="text-center	font-thin mt-2.5">
+            © 2023 Cinemnar. All Rights Reserved.
+          </p>
         </div>
       </div>
     </div>
