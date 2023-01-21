@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import http from "../helpers/http";
 import { ArrowLeft, ArrowRight } from "react-feather";
+import Skeleton from "./Skeleton";
 
 const ViewAllComponent = () => {
   const [ViewAll, setViewAll] = useState([]);
@@ -53,7 +54,6 @@ const ViewAllComponent = () => {
           <div className="flex justify-center items-center rounded-md p-2">
             <select
               name="sort"
-              
               onChange={(e) => setSort(e.target.value)}
               className="w-32 p-2 rounded-lg font-normal bg-[ #FCFDFE] "
             >
@@ -86,6 +86,43 @@ const ViewAllComponent = () => {
           ))}
         </div>
         <div className="bg-white md:py-[20px] py-5 md:px-[30px] px-3 mt-5">
+          {ViewAll[0] ? (
+            <div className="flex gap-8 flex-wrap justify-center">
+              {ViewAll.map((item) => (
+                <div className="relative md:w-auto w-[150px]" key={item.id}>
+                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
+                    <img
+                      src={item.picture}
+                      alt={item.title}
+                      title={item.title}
+                      className="rounded-lg md:w-[180px] w-[125px]"
+                    ></img>
+                    <div className="flex flex-col text-center w-full items-center">
+                      <div className="pt-6 pb-3 min-h-[100px]">
+                        <div className="md:text-lg text-base font-bold mb-2 w-[180px]">
+                          {" "}
+                          {item.title}{" "}
+                        </div>
+                      </div>
+                      <div className="flex flex-row">
+                        <div className="text-xs text-slate-400">
+                          {item.genre}
+                        </div>
+                      </div>
+                      <Link
+                        to={"/MovieDetail/" + item.id}
+                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                      >
+                        Details{" "}
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <Skeleton />
+          )}
           <div className="flex gap-8 flex-wrap justify-center">
             {ViewAll.map((item) => (
               <div className="relative md:w-auto w-[150px]" key={item.id}>

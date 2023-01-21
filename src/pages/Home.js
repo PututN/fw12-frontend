@@ -6,6 +6,7 @@ import HomepageBanner from "../assets/images/img-homepage.png";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import http from "../helpers/http";
+import Skeleton from "../components/Skeleton";
 
 const Homepage = () => {
   const token = useSelector((state) => state.auth.token);
@@ -65,34 +66,38 @@ const Homepage = () => {
               <Link to="/ViewAll">View All</Link>
             </div>
           </div>
-          <div className="flex gap-8 mt-8 px-8 overflow-x-auto ">
-            {nowShowing.map((movie) => (
-              <div className="relative group w-[1000px]" key={movie.id}>
-                <div className="flex flex-col p-2 border-2 border-[#FAAB78] items-center rounded-lg  text-center hover:bg-white">
-                  <img
-                    className="rounded-lg"
-                    src={movie.picture}
-                    alt={movie.title}
-                    title={movie.title}
-                  />
-                  <div className="top-2/4 hidden group-hover:flex flex-col gap-2">
-                    <div className="text-2x1 font-semibold w-[130px] mt-2">
-                      {movie.title}
+          {nowShowing[0] ? (
+            <div className="flex gap-8 mt-8 px-8 overflow-x-auto ">
+              {nowShowing.map((movie) => (
+                <div className="relative group w-[1000px]" key={movie.id}>
+                  <div className="flex flex-col p-2 border-2 border-[#FAAB78] items-center rounded-lg  text-center hover:bg-white">
+                    <img
+                      className="rounded-lg"
+                      src={movie.picture}
+                      alt={movie.title}
+                      title={movie.title}
+                    />
+                    <div className="top-2/4 hidden group-hover:flex flex-col gap-2">
+                      <div className="text-2x1 font-semibold w-[130px] mt-2">
+                        {movie.title}
+                      </div>
+                      <div className="flex flex-row">
+                        <div className="text-sm w-[130px]">{movie.genre}</div>
+                      </div>
+                      <Link
+                        to={"/MovieDetail/" + movie.id}
+                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[130px]"
+                      >
+                        Details
+                      </Link>
                     </div>
-                    <div className="flex flex-row">
-                      <div className="text-sm w-[130px]">{movie.genre}</div>
-                    </div>
-                    <Link
-                      to={"/MovieDetail/" + movie.id}
-                      className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[130px]"
-                    >
-                      Details
-                    </Link>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <Skeleton />
+          )}
         </div>
       </div>
       {/* UPCOMING */}
@@ -105,41 +110,45 @@ const Homepage = () => {
               <Link to="/ViewAll">View All</Link>
             </div>
           </div>
-          <div className="flex gap-8 mt-8 md:px-8 px-1 overflow-x-auto">
-            {upComing.map((item) => (
-              <div className="relative" key={item.id}>
-                <div className="flex flex-col md:p-8 p-4 border-2 items-center justify-between border-[#C539B4] rounded-lg text-center hover:bg-white w-full h-full">
-                  <img
-                    src={item.picture}
-                    alt={item.title}
-                    title={item.title}
-                    className="rounded-lg"
-                  ></img>
-                  <div className="flex flex-col text-center w-full items-center">
-                    <div className="pt-6 pb-3 min-h-[100px]">
-                      <div className="md:text-lg text-md font-bold mb-2">
-                        {" "}
-                        {item.title}{" "}
-                      </div>
-                    </div>
-                    <div>
-                      <div className="flex flex-row">
-                        <div className="text-xs text-slate-400">
-                          {item.genre}
+          {upComing[0] ? (
+            <div className="flex gap-8 mt-8 md:px-8 px-1 overflow-x-auto">
+              {upComing.map((item) => (
+                <div className="relative" key={item.id}>
+                  <div className="flex flex-col md:p-8 p-4 border-2 items-center justify-between border-[#C539B4] rounded-lg text-center hover:bg-white w-full h-full">
+                    <img
+                      src={item.picture}
+                      alt={item.title}
+                      title={item.title}
+                      className="rounded-lg"
+                    ></img>
+                    <div className="flex flex-col text-center w-full items-center">
+                      <div className="pt-6 pb-3 min-h-[100px]">
+                        <div className="md:text-lg text-md font-bold mb-2">
+                          {" "}
+                          {item.title}{" "}
                         </div>
                       </div>
-                      <Link
-                        to={"/MovieDetail/" + item.id}
-                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium mt-3"
-                      >
-                        Details
-                      </Link>
+                      <div>
+                        <div className="flex flex-row">
+                          <div className="text-xs text-slate-400">
+                            {item.genre}
+                          </div>
+                        </div>
+                        <Link
+                          to={"/MovieDetail/" + item.id}
+                          className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium mt-3"
+                        >
+                          Details
+                        </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <Skeleton />
+          )}
         </div>
       </div>
       {/* MOVIEGOER */}
