@@ -3,7 +3,6 @@ import NavBarAfterLogin from "../components/NavBarAfterLogin";
 import Navbar from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import cinemas from "../assets/images/img-footer3.png";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import moment from "moment/moment";
@@ -63,7 +62,7 @@ const OrderPage = () => {
             movieScheduleId,
             movieTitle,
             seatNum: selectSeat,
-            totalPrice,
+            totalPrice : selectSeat.length * price,
             userId,
             price,
           })
