@@ -8,6 +8,7 @@ import React from "react";
 import http from "../helpers/http";
 import { transaction } from "../redux/reducers/transactionReducers";
 import moment from "moment/moment";
+import Skeleton from "../components/Skeleton";
 
 const PaymentPage = () => {
   const {
@@ -68,6 +69,7 @@ const PaymentPage = () => {
       fetchProfile();
     }
   }, [token]);
+  console.log(`${profile.firstName} ${profile.lastName}`);
   //set profile
   const [fullName, setFullName] = React.useState("");
   const [newEmail, setNewEmail] = React.useState("");
@@ -154,7 +156,9 @@ const PaymentPage = () => {
       <div className="bg-[#F5D5AE] md:hidden block">
         <div className="flex justify-between p-5 rounded-b-2xl bg-white">
           <div>Total Payment</div>
-          <div className="text-xl font-bold">Rp {Number(totalPrice).toLocaleString('id')}</div>
+          <div className="text-xl font-bold">
+            Rp {Number(totalPrice).toLocaleString("id")}
+          </div>
         </div>
       </div>
       <div className="bg-[#F5D5AE] lg:p-20 p-5">
@@ -222,25 +226,29 @@ const PaymentPage = () => {
               <h1 className="text-xl font-bold mt-10 mb-6">
                 Choose a Payment Method
               </h1>
-              <div className="bg-white rounded-md lg:p-16 p-4">
-                <div className="flex md:flex-row justify-center flex-wrap gap-3">
-                  {paymentMethod?.map((item) => {
-                    return (
-                      <button
-                        key={String(item.id)}
-                        onClick={() => setSelectPaymentMethod(item?.id)}
-                        className={
-                          selectPaymentMethod === item?.id
-                            ? "border-2 md:w-[150px] w-[115px] border-black flex items-center justify-center py-2 rounded-md bg-[#F5D5AE] cursor-pointer"
-                            : "border-2 md:w-[150px] w-[115px] border-black flex items-center justify-center py-2 rounded-md bg-white cursor-pointer"
-                        }
-                      >
-                        <img src={item.picture} alt={`${item.name}`}></img>
-                      </button>
-                    );
-                  })}
+              {paymentMethod ? (
+                <div className="bg-white rounded-md lg:p-16 p-4">
+                  <div className="flex md:flex-row justify-center flex-wrap gap-3">
+                    {paymentMethod?.map((item) => {
+                      return (
+                        <button
+                          key={String(item.id)}
+                          onClick={() => setSelectPaymentMethod(item?.id)}
+                          className={
+                            selectPaymentMethod === item?.id
+                              ? "border-2 md:w-[150px] w-[115px] border-black flex items-center justify-center py-2 rounded-md bg-[#F5D5AE] cursor-pointer"
+                              : "border-2 md:w-[150px] w-[115px] border-black flex items-center justify-center py-2 rounded-md bg-white cursor-pointer"
+                          }
+                        >
+                          <img src={item.picture} alt={`${item.name}`}></img>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
-              </div>
+              ) : (
+                <Skeleton />
+              )}
               <div className="justify-between mt-10 md:flex hidden ">
                 <Link
                   to="/OrderPage"
@@ -277,13 +285,17 @@ const PaymentPage = () => {
                 <div>
                   <form for="Full Name">
                     <div className="text-base	leading-5 mb-3">Full Name</div>
-                    <input
-                      type="text"
-                      onChange={(value) => setFullName(value)}
-                      defaultValue={`${profile?.firstName} ${profile?.lastName}`}
-                      className="w-full border-black p-3 mt-2 mb-5 rounded-md focus:outline-none border"
-                      placeholder="Write your fullname"
-                    ></input>
+                    {profile ? (
+                      <input
+                        type="text"
+                        onChange={(value) => setFullName(value)}
+                        defaultValue={`${profile?.firstName} ${profile?.lastName}`}
+                        className="w-full border-black p-3 mt-2 mb-5 rounded-md focus:outline-none border"
+                        placeholder="Write your full Name"
+                      ></input>
+                    ) : (
+                      <Skeleton />
+                    )}
                     <div className="text-base	leading-5 mb-3">Email</div>
                     <input
                       type="email"
@@ -294,8 +306,9 @@ const PaymentPage = () => {
                     ></input>
                     <div className="text-base	leading-5 mb-3">Phone Number</div>
                     <input
+                    type='text'
                       onChange={(value) => setNewPhoneNumber(value)}
-                      defaultValue={profile.phoneNumber}
+                      defaultValue={profile?.phoneNumber}
                       className="flex w-full border-black p-3 mt-2 mb-5 rounded-md focus:outline-none border"
                     ></input>
                   </form>
