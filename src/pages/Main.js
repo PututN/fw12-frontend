@@ -62,7 +62,7 @@ const Main = () => {
         />
 
         <Route
-          path="/TicketResult"
+          path="/TicketResult/:id"
           element={
             <PrivateRoute>
               <TicketResult />
