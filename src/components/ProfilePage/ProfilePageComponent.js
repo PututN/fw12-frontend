@@ -1,4 +1,4 @@
-import ProfileCard from './ProfileCard'
+import ProfileCard from '../ProfileCard'
 import MenuProfile from './MenuProfile'
 import Details from './Details'
 import AccountPrivacy from './AccountPrivacy'

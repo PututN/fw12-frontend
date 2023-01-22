@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import http from "../../helpers/http";
-import { logout as logoutAction } from "../../redux/reducers/authReducers";
-import user from "../../assets/images/user.png";
+import http from "../helpers/http";
+import { logout as logoutAction } from "../redux/reducers/authReducers";
+import user from "../assets/images/user.png";
 import { Edit2 } from "react-feather";
 
 const ProfileCard = () => {

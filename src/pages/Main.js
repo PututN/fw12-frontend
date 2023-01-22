@@ -11,9 +11,7 @@ import OrderPage from "./OrderPage";
 import PaymentPage from "./PaymentPage";
 import ProfilePage from "./ProfilePage";
 import History from "./History";
-import TicketResultActive from "./TicketResultActive";
-import TicketResultUsed from "./TickedResultUsed";
-import TicketResultExpired from "./TicketResultExpired";
+import TicketResult from "./TicketResult";
 import ManageMovie from "./ManageMovie";
 import Dashboard from "./Dashboard";
 import ManageSchedule from "./ManageSchedule";
@@ -62,30 +60,16 @@ const Main = () => {
             </PrivateRoute>
           }
         />
+
         <Route
-          path="/TicketResultActive"
+          path="/TicketResult"
           element={
             <PrivateRoute>
-              <TicketResultActive />
+              <TicketResult />
             </PrivateRoute>
           }
         />
-        <Route
-          path="/TicketResultUsed"
-          element={
-            <PrivateRoute>
-              <TicketResultUsed />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/TicketResultExpired"
-          element={
-            <PrivateRoute>
-              <TicketResultExpired />
-            </PrivateRoute>
-          }
-        />
+
         <Route path="/ManageMovie" element={<ManageMovie />} />
         <Route path="/Dashboard" element={<Dashboard />} />
         <Route path="/ManageSchedule" element={<ManageSchedule />} />

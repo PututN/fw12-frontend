@@ -74,7 +74,6 @@ const PaymentPage = () => {
   const [fullName, setFullName] = React.useState("");
   const [newEmail, setNewEmail] = React.useState("");
   const [newPhoneNumber, setNewPhoneNumber] = React.useState("");
-
   //alert success
   const [successMessage, setSuccessMessage] = React.useState(false);
 
@@ -96,9 +95,7 @@ const PaymentPage = () => {
           movieId,
           cinemaId,
           movieScheduleId,
-          fullName: fullName
-            ? fullName
-            : `${profile?.firstName} ${profile?.lastName}`,
+          fullName,
           email: newEmail ? newEmail : `${profile?.email}`,
           phoneNumber: newPhoneNumber
             ? newPhoneNumber
@@ -123,9 +120,7 @@ const PaymentPage = () => {
     try {
       const response = await http(token).post(`/transaction/order`, {
         bookingDate,
-        fullName: fullName
-          ? fullName
-          : `${profile?.firstName} ${profile?.lastName}`,
+        fullName,
         email: newEmail ? newEmail : `${profile?.email}`,
         movieId,
         movieScheduleId,
@@ -288,8 +283,7 @@ const PaymentPage = () => {
                     {profile ? (
                       <input
                         type="text"
-                        onChange={(value) => setFullName(value)}
-                        defaultValue={`${profile?.firstName} ${profile?.lastName}`}
+                        onChange={(e) => setFullName(e.target.value)}
                         className="w-full border-black p-3 mt-2 mb-5 rounded-md focus:outline-none border"
                         placeholder="Write your full Name"
                       ></input>
@@ -299,15 +293,15 @@ const PaymentPage = () => {
                     <div className="text-base	leading-5 mb-3">Email</div>
                     <input
                       type="email"
-                      onChange={(value) => setNewEmail(value)}
+                      onChange={(e) => setNewEmail(e.target.value)}
                       defaultValue={profile?.email}
                       className="w-full border-black p-3 mt-2 mb-5 rounded-md focus:outline-none border"
                       placeholder="Write your email"
                     ></input>
                     <div className="text-base	leading-5 mb-3">Phone Number</div>
                     <input
-                    type='text'
-                      onChange={(value) => setNewPhoneNumber(value)}
+                      type="text"
+                      onChange={(e) => setNewPhoneNumber(e.target.value)}
                       defaultValue={profile?.phoneNumber}
                       className="flex w-full border-black p-3 mt-2 mb-5 rounded-md focus:outline-none border"
                     ></input>
