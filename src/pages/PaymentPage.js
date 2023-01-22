@@ -246,7 +246,7 @@ const PaymentPage = () => {
               )}
               <div className="justify-between mt-10 md:flex hidden ">
                 <Link
-                  to="/OrderPage"
+                  to="/Order"
                   className="w-1/3 border-2 text-center rounded-md font-semibold  text-white btn bg-[#852999]"
                 >
                   {" "}

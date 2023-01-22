@@ -29,7 +29,7 @@ const Main = () => {
         <Route path="/ViewAll" element={<ViewAll />} />
         <Route path="/MovieDetail/:id" element={<MovieDetail />} />
         <Route
-          path="/OrderPage"
+          path="/Order"
           element={
             <PrivateRoute>
               <OrderPage />
@@ -37,7 +37,7 @@ const Main = () => {
           }
         />
         <Route
-          path="/PaymentPage"
+          path="/Payment"
           element={
             <PrivateRoute>
               <PaymentPage />

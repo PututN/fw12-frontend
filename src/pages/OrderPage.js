@@ -68,7 +68,7 @@ const OrderPage = () => {
           })
         );
 
-        navigate("/PaymentPage");
+        navigate("/Payment");
       } else {
         setErrorMessage("Please choose your seat");
         setTimeout(() => {

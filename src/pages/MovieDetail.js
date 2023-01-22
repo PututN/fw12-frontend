@@ -106,7 +106,7 @@ const MovieDetail = () => {
             movieTitle,
           })
         );
-        navigate("/OrderPage");
+        navigate("/Order");
       }
     } catch (err) {
       console.log(err);
