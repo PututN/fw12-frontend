@@ -34,19 +34,19 @@ const ManageMovie = () => {
                   <div className="mb-2.5">Movie Name</div>
                   <input
                     type="text"
-                    className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                    className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                     placeholder="Spider-Man: Homecoming"
                   ></input>
                   <div className="my-2.5">Director</div>
                   <input
                     type="email"
-                    className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                    className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                     placeholder="Jon Watts"
                   ></input>
                   <div className="my-2.5">Release date</div>
                   <input
                     type="email"
-                    className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                    className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                     placeholder="07/05/2020"
                   ></input>
                 </div>
@@ -54,13 +54,13 @@ const ManageMovie = () => {
                   <div className="mb-2.5">Category</div>
                   <input
                     type="text"
-                    className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                    className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                     placeholder="Action, Adventure, Sci-Fi"
                   ></input>
                   <div className="my-2.5">Casts</div>
                   <input
                     type="email"
-                    className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                    className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                     placeholder="Tom Holland, Michael Keaton, Robert Dow.."
                   ></input>
                   <div className="flex">
@@ -68,7 +68,7 @@ const ManageMovie = () => {
                       <div className="my-2.5">Duration Hour</div>
                       <input
                         type="email"
-                        className="p-3 mr-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                        className="p-3 mr-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                         placeholder="2"
                       ></input>
                     </div>
@@ -76,7 +76,7 @@ const ManageMovie = () => {
                       <div className="my-2.5 flex-col">Duration Minute</div>
                       <input
                         type="email"
-                        className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+                        className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
                         placeholder="3"
                       ></input>
                     </div>
@@ -88,7 +88,7 @@ const ManageMovie = () => {
           <div className="my-2.5 flex-col">Synopsis</div>
           <input
             type="email"
-            className="p-3 border border-2 rounded-md bg-[#FEFCF3] w-full"
+            className="p-3 border-2 rounded-md bg-[#FEFCF3] w-full"
             placeholder="Thrilled by his experience with the Avengers, Peter returns home, where he
             lives with his Aunt May, | "
           ></input>
@@ -155,13 +155,13 @@ const ManageMovie = () => {
                     </div>
                     <Link
                       to="#"
-                      className="border-[#3A8891] hover:drop-shadow-2xl shadow-black border border-2 text-[#3A8891] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                      className="border-[#3A8891] hover:drop-shadow-2xl shadow-black  border-2 text-[#3A8891] py-2 px-4 text-medium  rounded-md font-medium w-[100px] mt-3"
                     >
                       Update{" "}
                     </Link>
                     <Link
                       to="#"
-                      className="border-[#ED2E7E]  hover:drop-shadow-2xl shadow-black border border-2 text-[#ED2E7E] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                      className="border-[#ED2E7E]  hover:drop-shadow-2xl shadow-black  border-2 text-[#ED2E7E] py-2 px-4 text-medium  rounded-md font-medium w-[100px] mt-3"
                     >
                       Delete{" "}
                     </Link>
