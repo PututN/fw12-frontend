@@ -22,52 +22,49 @@ const ProfileCard = () => {
     }
   }, [token]);
 
-  // const [picture, setPicture] = useState([]);
-  // console.log(picture.target.files[0]);
-  const [errorSizeUpload, setErrorSizeUpload] = useState(false);
-  const [errorTypeUpload, setErrorTypeUpload] = useState(false);
+    //UPLOAD PHOTO
 
-  const uploadPicture = async (e) => {
-    try {
-      e.preventDefault();
-      console.log(e);
-      console.log(e.target.files[0]);
-      const file = e.target.files[0];
-      const formData = new FormData();
-      formData.append("picture", file);
-      if (file) {
-        if (file.size <= 50000) {
-          if (file.type === "image / png" || "image / jpg" || "image / jpeg") {
-            const { data } = await http(token).patch(
-              "/profile/updated",
-              formData,
-              {
-                headers: {
-                  "Content-type": "multipart/form-data",
-                },
-              }
-            );
-          } else {
-            setErrorTypeUpload(
-              "Please choose photo with format JPG, JPEG, PNG"
-            );
+    const [errorSize, setErrorSize] = useState(false);
+    const [successUpload, setSuccessUpload] = useState(false);
+  
+    const [errorPicture, setErrorPicture] = useState(false);
+    const [loadingUpload, setLoadingUpload] = useState(false);
+    const [file, setFile] = useState(false);
+    const handleUploadPhoto = async (e) => {
+      try {
+        if (file) {
+          if (file?.size <= 5024 * 1024) {
+            setLoadingUpload("loading...");
+            const form = new FormData();
+            form.append("picture", file);
+            const response = await http(token).patch("/profile/updated", form, {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            });
+            setLoadingUpload(false);
+            setSuccessUpload(response.data.message);
             setTimeout(() => {
-              setErrorTypeUpload(false);
+              setSuccessUpload(false);
+              fetchProfile();
+            }, 3000);
+          } else {
+            setErrorSize("Please upload photo less than 5 MB");
+            setTimeout(() => {
+              setErrorSize(false);
             }, 3000);
           }
         } else {
-          setErrorSizeUpload("Please choose photo less than 5 MB");
+          setErrorPicture("Please Select photo");
           setTimeout(() => {
-            setErrorSizeUpload(false);
+            setErrorPicture(false);
           }, 3000);
         }
-      } else {
-        alert("Please choose image first");
+      } catch (error) {
+        console.log(error);
       }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+    };
+  
 
   return (
     <>
@@ -86,22 +83,45 @@ const ProfileCard = () => {
             )}
             <div className="flex flex-col">
               <input
+                accept="image/png, image/jpeg, image/jpg"
                 type="file"
                 name="picture"
                 id="picture"
                 className="hidden"
-                // onChange={(file) => setPicture(file)}
+                onChange={(e) => setFile(e.target.files[0])}
               ></input>
-              <button
-                onClick={uploadPicture}
-                htmlFor="picture"
-                className="btn bg-[#C539B4]"
-              >
+              <label htmlFor="picture" className="btn bg-[#C539B4]">
                 Select Picture
-              </button>
-              {/* <button type="submit" className="btn bg-[#C539B4] mt-5">
-                Upload Image
-              </button> */}
+              </label>
+              {setFile && (
+                <button
+                  className="btn bg-[#EF9A53] mt-5"
+                  onClick={handleUploadPhoto}
+                >
+                  Upload
+                </button>
+              )}
+              {errorPicture && (
+                <div className="font-bold text-md text-red-500 text-center">
+                  {errorPicture}
+                </div>
+              )}
+              {loadingUpload && (
+                <div className="font-bold text-md text-blue-500 text-center">
+                  {loadingUpload}
+                </div>
+              )}
+
+              {errorSize && (
+                <div className="font-bold text-md text-red-500 text-center">
+                  {errorSize}
+                </div>
+              )}
+              {successUpload && (
+                <div className="font-bold text-md text-green-500 text-center">
+                  {successUpload}
+                </div>
+              )}
             </div>
 
             <div>

@@ -43,9 +43,9 @@ const UpdateDataSchema = Yup.object().shape({
 
 const ProfilePage = () => {
   const dispatch = useDispatch();
+  const token = useSelector((state) => state.auth.token);
   const [profile, setProfile] = React.useState({});
 
-  const token = useSelector((state) => state.auth.token);
   const fetchProfile = async () => {
     try {
       const response = await http(token).get("/profile");
@@ -152,7 +152,7 @@ const ProfilePage = () => {
   const pictureProfile = profile.picture;
   return (
     <>
-      {token ? <NavBarAfterLogin image={pictureProfile} /> : <Navbar />}
+      <NavBarAfterLogin image={pictureProfile} />
       <div className="bg-[#F5D5AE] md:hidden block">
         <div className="flex justify-between p-5 rounded-b-2xl bg-white">
           <div className="border-b-4 border-[#C539B4] pb-2">
@@ -172,89 +172,7 @@ const ProfilePage = () => {
         <div className="flex">
           <div className="w-1/4 hidden lg:block">
             {/* PROFILE 1 */}
-            <div className="bg-white rounded-lg">
-              <div className="p-8">
-                <h1>INFO</h1>
-                <div className="flex flex-col items-center mt-4 relative gap-5">
-                  {profile.picture ? (
-                    <img
-                      src={profile.picture}
-                      alt="profile"
-                      className="w-32 rounded-full"
-                    />
-                  ) : (
-                    <img
-                      src={user}
-                      alt="profile"
-                      className="w-32 rounded-full"
-                    />
-                  )}
-                  <div className="flex flex-col">
-                    <input
-                      accept="image/png, image/jpeg, image/jpg"
-                      type="file"
-                      name="picture"
-                      id="picture"
-                      className="hidden"
-                      // onChange={(e) => console.log(e.target.files[0])}
-                      onChange={(e) => setFile(e.target.files[0])}
-                    ></input>
-                    <label htmlFor="picture" className="btn bg-[#C539B4]">
-                      Select Picture
-                    </label>
-                    {setFile && (
-                      <button
-                        className="btn bg-[#EF9A53] mt-5"
-                        onClick={handleUploadPhoto}
-                      >
-                        Upload
-                      </button>
-                    )}
-                    {errorPicture && (
-                      <div className="font-bold text-md text-red-500 text-center">
-                        {errorPicture}
-                      </div>
-                    )}
-                    {loadingUpload && (
-                      <div className="font-bold text-md text-blue-500 text-center">
-                        {loadingUpload}
-                      </div>
-                    )}
-
-                    {errorSize && (
-                      <div className="font-bold text-md text-red-500 text-center">
-                        {errorSize}
-                      </div>
-                    )}
-                    {successUpload && (
-                      <div className="font-bold text-md text-green-500 text-center">
-                        {successUpload}
-                      </div>
-                    )}
-                  </div>
-
-                  <div>
-                    <h2
-                      className="
-                font-semibold text-xl leading-8	text-center"
-                    >
-                      {profile?.firstName} {profile?.lastName}
-                    </h2>
-                    <p className="text-center text-sm">Moviegoers</p>
-                  </div>
-                </div>
-              </div>
-              <div className="border-2 w-full mb-5 border-[#F2DEBA]" />
-              <div className="py-8 px-8">
-                <button
-                  type="button"
-                  onClick={() => dispatch(logoutAction())}
-                  className="w-full py-3 rounded-lg text-white btn bg-[#852999] "
-                >
-                  Logout
-                </button>
-              </div>
-            </div>
+            <ProfileCard />
           </div>
           <div className="lg:w-3/4 w-full lg:ml-7 ml-0">
             <div className="bg-white md:p-7 p-3 rounded-md items-center md:flex hidden justify-around">
@@ -314,7 +232,6 @@ const ProfilePage = () => {
                               name="picture"
                               id="picture"
                               className="hidden"
-                              // onChange={(e) => console.log(e.target.files[0])}
                               onChange={(e) => setFile(e.target.files[0])}
                             ></input>
                             <label

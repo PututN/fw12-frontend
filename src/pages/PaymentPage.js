@@ -65,9 +65,6 @@ const PaymentPage = () => {
     if (token) {
       fetchPaymentMethod();
     }
-    if (!seatNum) {
-      navigate("/ViewAll");
-    }
   }, [token]);
 
   //set selected payment method
@@ -87,11 +84,6 @@ const PaymentPage = () => {
       fetchProfile();
     }
   }, [token]);
-  console.log(`${profile.firstName} ${profile.lastName}`);
-  //set profile
-  const [fullName, setFullName] = React.useState("");
-  const [newEmail, setNewEmail] = React.useState("");
-  const [newPhoneNumber, setNewPhoneNumber] = React.useState("");
   //alert success
   const [successMessage, setSuccessMessage] = React.useState(false);
 
@@ -287,7 +279,6 @@ const PaymentPage = () => {
                         Previous Step
                       </Link>
                       <button
-                        type="submit"
                         className="w-1/3 border-2 btn bg-[#C539B4] text-white rounded-md font-semibold text-center"
                       >
                         Pay your Order
@@ -312,7 +303,7 @@ const PaymentPage = () => {
                     </h1>
                     <div className="bg-white rounded-md p-5">
                       <div>
-                        <div className="text-base	leading-5 mb-3">Full Name</div>
+                        <div className="text-base	leading-5 my-3">Full Name</div>
                         <Field
                           type="text"
                           name="fullName"
@@ -323,7 +314,7 @@ const PaymentPage = () => {
                           <div className="text-red-500">{errors.fullName}</div>
                         ) : null}
 
-                        <div className="text-base	leading-5 mb-3">Email</div>
+                        <div className="text-base	leading-5 my-3">Email</div>
                         <Field
                           type="email"
                           name="email"
@@ -334,7 +325,7 @@ const PaymentPage = () => {
                         {errors.email && touched.email ? (
                           <div className="text-red-500">{errors.email}</div>
                         ) : null}
-                        <div className="text-base	leading-5 mb-3">
+                        <div className="text-base	leading-5 my-3">
                           Phone Number
                         </div>
                         <Field
