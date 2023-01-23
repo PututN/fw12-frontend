@@ -33,13 +33,13 @@ const Navbar = () => {
       <div className="max-[768px]:hidden">
         <Link
           to="/Signin"
-          className="btn bg-[#C539B4] font-bold mr-[40px] px-5 py-3 rounded-lg w-1/5"
+          className="btn w-[100px] bg-[#C539B4] font-bold mr-[40px] px-5 py-3 rounded-lg"
         >
           Sign In
         </Link>
         <Link
           to="/Signup"
-          className="btn bg-[#C539B4]  font-bold px-5 py-3 rounded-lg"
+          className="btn w-[100px] bg-[#C539B4]  font-bold px-5 py-3 rounded-lg"
         >
           Sign Up
         </Link>

@@ -27,7 +27,15 @@ const Main = () => {
         <Route path="/ForgotPassword" element={<ForgotPassword />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/ViewAll" element={<ViewAll />} />
-        <Route path="/MovieDetail/:id" element={<MovieDetail />} />
+
+        <Route
+          path="/MovieDetail/:id"
+          element={
+            <PrivateRoute>
+              <MovieDetail />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/Order"
           element={
