@@ -29,9 +29,9 @@ const History = () => {
     }
   }, [token]);
 
-  console.log(history);
 
   return (
+    
     <div>
       <NavBarAfterLogin />
       <div className="bg-[#F5D5AE] md:hidden block">
@@ -63,7 +63,7 @@ const History = () => {
                 <div className="pb-2">
                   <Link
                     to="/Profile"
-                    className="leading-8 text-lg mr-16 text-[#AAAAAA]"
+                    className="leading-8 text-lg text-[#AAAAAA]"
                   >
                     Account Setting
                   </Link>

@@ -47,7 +47,7 @@ const Footer = () => {
               <h4 className="mb-8 font-bold text-[16px]">Our Sponsor</h4>
             </div>
             <div>
-              <ul className="flex md:flex-col flex-row justify-center items-center gap-3">
+              <ul className="flex md:flex-col flex-row justify-center gap-3">
                 <li className="mb-[25px]">
                   <img src={Sponsor1} alt="sponsor1" />
                 </li>
@@ -65,7 +65,7 @@ const Footer = () => {
               <h4 className="mb-8 font-bold text-[16px]">Follow Us</h4>
             </div>
             <div>
-              <ul className="flex md:flex-col flex-row justify-center items-center gap-3">
+              <ul className="flex md:flex-col flex-row justify-center gap-3">
                 <li className="flex mb-2.5">
                   <img src={SosmedFb} alt="Facebook" className="mr-[15px]" />
                   <div className="md:block hidden"> Cinemnar id</div>

@@ -3,11 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import http from "../helpers/http";
 import { logout as logoutAction } from "../redux/reducers/authReducers";
 import user from "../assets/images/user.png";
-import { Edit2 } from "react-feather";
 
 const ProfileCard = () => {
-  const [toggle, setToggle] = React.useState(false);
-
   const dispatch = useDispatch();
   const [profile, setProfile] = React.useState({});
   const token = useSelector((state) => state.auth.token);
@@ -33,8 +30,8 @@ const ProfileCard = () => {
   const uploadPicture = async (e) => {
     try {
       e.preventDefault();
-      console.log(e)
-      console.log(e.target.files[0])
+      console.log(e);
+      console.log(e.target.files[0]);
       const file = e.target.files[0];
       const formData = new FormData();
       formData.append("picture", file);
@@ -87,23 +84,25 @@ const ProfileCard = () => {
             ) : (
               <img src={user} alt="profile" className="w-32 rounded-full" />
             )}
-            <Edit2
-              onClick={() => setToggle(!toggle)}
-              className="absolute top-[100px] right-4"
-            />
-            <form
-              onSubmit={uploadPicture}
-              className=""
-            >
+            <div className="flex flex-col">
               <input
                 type="file"
                 name="picture"
+                id="picture"
+                className="hidden"
                 // onChange={(file) => setPicture(file)}
               ></input>
-              <button type="submit" className="">
-                Upload Image
+              <button
+                onClick={uploadPicture}
+                htmlFor="picture"
+                className="btn bg-[#C539B4]"
+              >
+                Select Picture
               </button>
-            </form>
+              {/* <button type="submit" className="btn bg-[#C539B4] mt-5">
+                Upload Image
+              </button> */}
+            </div>
 
             <div>
               <h2
@@ -121,7 +120,7 @@ const ProfileCard = () => {
           <button
             type="button"
             onClick={() => dispatch(logoutAction())}
-            className="w-full py-3 rounded-lg text-white bg-[#0E5E6F] hover:bg-[#3A8891] "
+            className="w-full py-3 rounded-lg text-white btn bg-[#852999] "
           >
             Logout
           </button>
