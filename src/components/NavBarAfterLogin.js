@@ -9,7 +9,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import http from "../helpers/http";
 
-const NavBarAfterLogin = () => {
+const NavBarAfterLogin = (pictureProfile) => {
   const dispatch = useDispatch();
   const [profile, setProfile] = React.useState({});
   const token = useSelector((state) => state.auth.token);
@@ -66,9 +66,9 @@ const NavBarAfterLogin = () => {
           </div>
         </div>
         <div className="group relative">
-          {profile?.picture ? (
+          {pictureProfile.image ? (
             <img
-              src={profile.picture}
+              src={pictureProfile.image}
               alt="profile"
               className="w-10 rounded-full"
             />

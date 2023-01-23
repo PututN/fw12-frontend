@@ -33,13 +33,13 @@ const Navbar = () => {
       <div className="max-[768px]:hidden">
         <Link
           to="/Signin"
-          className="bg-[#E3CAA5] hover:bg-[#0E5E6F] hover:text-white text-black font-bold mr-[40px] px-5 py-3 rounded-lg w-1/5"
+          className="btn bg-[#C539B4] font-bold mr-[40px] px-5 py-3 rounded-lg w-1/5"
         >
           Sign In
         </Link>
         <Link
           to="/Signup"
-          className="bg-[#E3CAA5] hover:bg-[#3A8891] hover:text-white text-black font-bold px-5 py-3 rounded-lg"
+          className="btn bg-[#C539B4]  font-bold px-5 py-3 rounded-lg"
         >
           Sign Up
         </Link>
