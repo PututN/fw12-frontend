@@ -25,7 +25,6 @@ export const registerAction = createAsyncThunk(
     {rejectWithValue},
   ) => {
     try {
-      // console.log("lapor pak")
       const {data} = await http().post('/auth/register', {
         firstName,
         lastName,
@@ -66,7 +65,6 @@ export const ResetPasswordAction = createAsyncThunk(
   'auth/resetPassword',
   async ({code, password, email, confirmPassword, cb}, {rejectWithValue}) => {
     try {
-      console.log('ini masuk dispatch')
       const data = await http().post('/auth/resetPassword', {
         email,
         confirmPassword,
@@ -74,7 +72,6 @@ export const ResetPasswordAction = createAsyncThunk(
         password,
       });
       cb()
-      console.log('ini keluar dispatch')
       return data.result;
     } catch (error) {
       if (error.response && error.response.data.message) {

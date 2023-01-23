@@ -7,6 +7,58 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import http from "../helpers/http";
 import Skeleton from "../components/Skeleton";
+import { cancelTransaction } from "../redux/reducers/transactionReducers";
+
+const month = [
+  {
+    id: 1,
+    time: "January",
+  },
+  {
+    id: 2,
+    time: "February",
+  },
+  {
+    id: 3,
+    time: "March",
+  },
+  {
+    id: 4,
+    time: "April",
+  },
+  {
+    id: 5,
+    time: "May",
+  },
+  {
+    id: 6,
+    time: "June",
+  },
+  {
+    id: 7,
+    time: "July",
+  },
+  {
+    id: 8,
+    time: "August",
+  },
+  {
+    id: 9,
+    time: "September",
+  },
+  {
+    id: 10,
+    time: "October",
+  },
+  {
+    id: 11,
+    time: "November",
+  },
+  {
+    id: 12,
+    time: "December",
+  },
+];
 
 const Homepage = () => {
   const token = useSelector((state) => state.auth.token);
@@ -23,22 +75,26 @@ const Homepage = () => {
       }
     };
     fetchNowShowing();
+    cancelTransaction()
   }, []);
 
   //UP COMING
 
   const [upComing, setUpComing] = useState([]);
+  const [selectMonth, setSelectMonth] = useState(1);
   useEffect(() => {
     const fetchUpComing = async () => {
       try {
-        const response = await http().get("/movies/upComingMovies");
+        const response = await http().get(
+          `/movies/upComingMovies?month=${selectMonth}`
+        );
         setUpComing(response?.data?.results);
       } catch (error) {
         console.log(error);
       }
     };
     fetchUpComing();
-  }, []);
+  }, [selectMonth]);
 
   return (
     <>
@@ -57,9 +113,9 @@ const Homepage = () => {
         </div>
       </div>
       {/* NOW SHOWING */}
-      <div className="bg-[#EF9A53] md:h-[550px] h-[470px] px-10 md:px-20 py-20">
+      <div className="bg-[#EF9A53] px-10 md:px-20 py-20">
         {/* Movie now showing */}
-        <div className="mx-auto">
+        <div className="">
           <div className="flex flex-row justify-between items-center">
             <div className="md:text-2xl text-lg font-bold">Now Showing</div>
             <div className="text-medium font-semibold">
@@ -67,28 +123,31 @@ const Homepage = () => {
             </div>
           </div>
           {nowShowing[0] ? (
-            <div className="flex gap-8 mt-8 px-8 overflow-x-auto ">
-              {nowShowing.map((movie) => (
-                <div className="relative group w-[1000px]" key={movie.id}>
-                  <div className="flex flex-col p-2 border-2 border-[#FAAB78] items-center rounded-lg  text-center hover:bg-white">
+            <div className="flex gap-8 mt-8 md:px-8 px-0 overflow-x-auto ">
+              {nowShowing.map((item) => (
+                <div className="relative md:w-auto w-[150px]" key={item.id}>
+                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
                     <img
-                      className="rounded-lg"
-                      src={movie.picture}
-                      alt={movie.title}
-                      title={movie.title}
-                    />
-                    <div className="top-2/4 hidden group-hover:flex flex-col gap-2">
-                      <div className="text-2x1 font-semibold w-[130px] mt-2">
-                        {movie.title}
+                      src={item.picture}
+                      alt={item.title}
+                      title={item.title}
+                      className="rounded-lg md:w-[180px] w-[125px]"
+                    ></img>
+                    <div className="flex flex-col text-center w-full items-center">
+                      <div className="pt-6 pb-3 min-h-[100px]">
+                        <div className="md:text-lg text-base font-bold text-white mb-2 w-[180px]">
+                          {" "}
+                          {item.title}{" "}
+                        </div>
                       </div>
                       <div className="flex flex-row">
-                        <div className="text-sm w-[130px]">{movie.genre}</div>
+                        <div className="text-xs text-white">{item.genre}</div>
                       </div>
                       <Link
-                        to={"/MovieDetail/" + movie.id}
-                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[130px]"
+                        to={"/MovieDetail/" + item.id}
+                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
                       >
-                        Details
+                        Details{" "}
                       </Link>
                     </div>
                   </div>
@@ -110,37 +169,48 @@ const Homepage = () => {
               <Link to="/ViewAll">View All</Link>
             </div>
           </div>
+          <div className="overflow-x-auto flex">
+            {month.map((time) => {
+              return (
+                <button
+                  key={time.id}
+                  onClick={() => setSelectMonth(time.id)}
+                  className="mt-5 mr-3 border-2 btn bg-orange-300 rounded-md w-32 items-center justify-center"
+                >
+                  <div className="font-bold text-lg">{time.time}</div>
+                </button>
+              );
+            })}
+          </div>
           {upComing[0] ? (
             <div className="flex gap-8 mt-8 md:px-8 px-1 overflow-x-auto">
               {upComing.map((item) => (
-                <div className="relative" key={item.id}>
-                  <div className="flex flex-col md:p-8 p-4 border-2 items-center justify-between border-[#C539B4] rounded-lg text-center hover:bg-white w-full h-full">
+                <div className="relative md:w-auto w-[150px]" key={item.id}>
+                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
                     <img
                       src={item.picture}
                       alt={item.title}
                       title={item.title}
-                      className="rounded-lg"
+                      className="rounded-lg md:w-[180px] w-[125px]"
                     ></img>
                     <div className="flex flex-col text-center w-full items-center">
                       <div className="pt-6 pb-3 min-h-[100px]">
-                        <div className="md:text-lg text-md font-bold mb-2">
+                        <div className="md:text-lg text-base font-bold mb-2 w-[180px]">
                           {" "}
                           {item.title}{" "}
                         </div>
                       </div>
-                      <div>
-                        <div className="flex flex-row">
-                          <div className="text-xs text-slate-400">
-                            {item.genre}
-                          </div>
+                      <div className="flex flex-row">
+                        <div className="text-xs text-slate-400">
+                          {item.genre}
                         </div>
-                        <Link
-                          to={"/MovieDetail/" + item.id}
-                          className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium mt-3"
-                        >
-                          Details
-                        </Link>
                       </div>
+                      <Link
+                        to={"/MovieDetail/" + item.id}
+                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                      >
+                        Details{" "}
+                      </Link>
                     </div>
                   </div>
                 </div>

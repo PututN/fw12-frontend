@@ -71,8 +71,6 @@ const MovieDetail = () => {
   const [errorSelectedDate, setErrorSelectedDate] = React.useState(false);
   const movieTitle = movieId?.title;
 
-  console.log(errorSelectedTime);
-  console.log(errorSelectedDate);
   //handle onsubmit book now
   const handleSubmitBookNow = async (
     cinemaName,

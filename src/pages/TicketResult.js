@@ -27,7 +27,6 @@ const TicketResult = () => {
       fetchTicket();
     }
   }, [token]);
-  console.log(ticket);
 
   //set Date
   const date = moment(ticket.bookingDate)
@@ -35,7 +34,6 @@ const TicketResult = () => {
     .split(",")[0]
     .split(" ");
   const fixDate = `${date[1]} ${date[0]}`;
-  console.log(fixDate);
 
   return (
     <>

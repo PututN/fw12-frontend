@@ -72,6 +72,12 @@ const NavBarAfterLogin = (pictureProfile) => {
               alt="profile"
               className="w-10 rounded-full"
             />
+          ) : profile?.picture ? (
+            <img
+              src={profile?.picture}
+              alt="profile"
+              className="w-10 rounded-full"
+            />
           ) : (
             <img src={user} alt="profile" className="w-10 rounded-full" />
           )}

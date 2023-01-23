@@ -130,39 +130,6 @@ const ViewAll = () => {
             ) : (
               <Skeleton />
             )}
-            <div className="flex gap-8 flex-wrap justify-center">
-              {ViewAll.map((item) => (
-                <div className="relative md:w-auto w-[150px]" key={item.id}>
-                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
-                    <img
-                      src={item.picture}
-                      alt={item.title}
-                      title={item.title}
-                      className="rounded-lg md:w-[180px] w-[125px]"
-                    ></img>
-                    <div className="flex flex-col text-center w-full items-center">
-                      <div className="pt-6 pb-3 min-h-[100px]">
-                        <div className="md:text-lg text-base font-bold mb-2 w-[180px]">
-                          {" "}
-                          {item.title}{" "}
-                        </div>
-                      </div>
-                      <div className="flex flex-row">
-                        <div className="text-xs text-slate-400">
-                          {item.genre}
-                        </div>
-                      </div>
-                      <Link
-                        to={"/MovieDetail/" + item.id}
-                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
-                      >
-                        Details{" "}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
           <div className="flex justify-around mt-8 mb-3">
             {page > 1 ? (

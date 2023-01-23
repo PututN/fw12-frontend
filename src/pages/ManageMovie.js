@@ -7,7 +7,6 @@ import React from "react";
 
 const ManageMovie = () => {
   const [Char, setChar] = React.useState([]);
-  console.log(Char);
   React.useEffect(() => {
     GetViewMovies().then((data) => {
       setChar(data);

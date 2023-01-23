@@ -61,7 +61,6 @@ const PaymentPage = () => {
       if (error) console.log(error);
     }
   };
-  console.log(seatNum);
   React.useEffect(() => {
     if (token) {
       fetchPaymentMethod();
@@ -152,7 +151,7 @@ const PaymentPage = () => {
       setSuccessMessage("Payment Success");
       setTimeout(() => {
         setSuccessMessage(false);
-        // navigate("/History");
+        navigate("/History");
       }, 3000);
       return response;
     } catch (error) {
