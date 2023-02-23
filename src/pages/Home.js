@@ -75,7 +75,7 @@ const Homepage = () => {
       }
     };
     fetchNowShowing();
-    cancelTransaction()
+    cancelTransaction();
   }, []);
 
   //UP COMING
@@ -125,30 +125,33 @@ const Homepage = () => {
           {nowShowing[0] ? (
             <div className="flex gap-8 mt-8 md:px-8 px-0 overflow-x-auto ">
               {nowShowing.map((item) => (
-                <div className="relative md:w-auto w-[150px]" key={item.id}>
-                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
+                <div
+                  className="relative md:w-auto w-[150px] md:h-auto h-[403px]"
+                  key={item.id}
+                >
+                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center h-full md:h-auto">
                     <img
                       src={item.picture}
                       alt={item.title}
                       title={item.title}
                       className="rounded-lg md:w-[180px] w-[125px]"
                     ></img>
-                    <div className="flex flex-col text-center w-full items-center">
-                      <div className="pt-6 pb-3 min-h-[100px]">
-                        <div className="md:text-lg text-base font-bold text-white mb-2 w-[180px]">
+                    <div className="flex flex-col text-center w-full items-center md:flex-auto flex-1">
+                      <div className="pt-6 pb-3 min-h-[100px] md:flex-auto flex-1">
+                        <div className="md:text-lg text-sm font-bold text-white mb-2 md:w-[180px] w-32">
                           {" "}
                           {item.title}{" "}
                         </div>
                       </div>
-                      <div className="flex flex-row">
+                      <div className="flex flex-col items-center">
                         <div className="text-xs text-white">{item.genre}</div>
+                        <Link
+                          to={"/MovieDetail/" + item.id}
+                          className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                        >
+                          Details{" "}
+                        </Link>
                       </div>
-                      <Link
-                        to={"/MovieDetail/" + item.id}
-                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
-                      >
-                        Details{" "}
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -175,9 +178,9 @@ const Homepage = () => {
                 <button
                   key={time.id}
                   onClick={() => setSelectMonth(time.id)}
-                  className="mt-5 mr-3 border-2 btn bg-orange-300 rounded-md w-32 items-center justify-center"
+                  className="mt-5 mr-3 border-2 btn bg-orange-300 rounded-md md:w-32 w-20 items-center justify-center"
                 >
-                  <div className="font-bold text-lg">{time.time}</div>
+                  <div className="font-bold md:text-lg text-sm">{time.time}</div>
                 </button>
               );
             })}
@@ -185,32 +188,35 @@ const Homepage = () => {
           {upComing[0] ? (
             <div className="flex gap-8 mt-8 md:px-8 px-1 overflow-x-auto">
               {upComing.map((item) => (
-                <div className="relative md:w-auto w-[150px]" key={item.id}>
-                  <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
+                <div
+                  className="relative md:w-auto w-[150px] md:h-auto h-[403px]"
+                  key={item.id}
+                >
+                  <div className="md:h-auto h-full md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
                     <img
                       src={item.picture}
                       alt={item.title}
                       title={item.title}
                       className="rounded-lg md:w-[180px] w-[125px]"
                     ></img>
-                    <div className="flex flex-col text-center w-full items-center">
-                      <div className="pt-6 pb-3 min-h-[100px]">
-                        <div className="md:text-lg text-base font-bold mb-2 w-[180px]">
+                    <div className="flex flex-col text-center w-full items-center md:flex-auto flex-1">
+                      <div className="pt-6 pb-3 min-h-[100px] md:flex-auto flex-1">
+                        <div className="items-center md:text-lg text-sm font-bold mb-2 md:w-[180px] w-32">
                           {" "}
                           {item.title}{" "}
                         </div>
                       </div>
-                      <div className="flex flex-row">
+                      <div className="flex flex-col items-center">
                         <div className="text-xs text-slate-400">
                           {item.genre}
                         </div>
+                        <Link
+                          to={"/MovieDetail/" + item.id}
+                          className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                        >
+                          Details{" "}
+                        </Link>
                       </div>
-                      <Link
-                        to={"/MovieDetail/" + item.id}
-                        className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
-                      >
-                        Details{" "}
-                      </Link>
                     </div>
                   </div>
                 </div>

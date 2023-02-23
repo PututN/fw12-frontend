@@ -8,7 +8,6 @@ import http from "../helpers/http";
 import { ArrowLeft, ArrowRight } from "react-feather";
 import Skeleton from "../components/Skeleton";
 
-
 const ViewAll = () => {
   const token = useSelector((state) => state.auth.token);
   const [ViewAll, setViewAll] = useState([]);
@@ -35,21 +34,6 @@ const ViewAll = () => {
   const pageNext = () => {
     setPage(page + 1);
   };
-
-  const month = [
-    "September",
-    "October",
-    "November",
-    "December",
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-  ];
 
   return (
     <div>
@@ -82,46 +66,39 @@ const ViewAll = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-row gap-5 mt-10 overflow-x-auto">
-            {month.map((item, index) => (
-              <button
-                key={`month-${index}`}
-                className="border-2 w-[100px] rounded-md flex justify-center items-center p-2 hover:bg-[#0E5E6F] text-white hover:text-white font-bold hover:shadow-lg bg-[#F8B400]"
-              >
-                {item}
-              </button>
-            ))}
-          </div>
           <div className="bg-white md:py-[20px] py-5 md:px-[30px] px-3 mt-5">
             {ViewAll[0] ? (
               <div className="flex gap-8 flex-wrap justify-center">
                 {ViewAll.map((item) => (
-                  <div className="relative md:w-auto w-[150px]" key={item.id}>
-                    <div className="md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
+                  <div
+                    className="relative md:w-auto w-[150px] md:h-auto h-[403px]"
+                    key={item.id}
+                  >
+                    <div className="md:h-auto h-full md:w-auto flex flex-col md:p-8 p-3 border-2 items-center border-[#C539B4] rounded-lg text-center">
                       <img
                         src={item.picture}
                         alt={item.title}
                         title={item.title}
                         className="rounded-lg md:w-[180px] w-[125px]"
                       ></img>
-                      <div className="flex flex-col text-center w-full items-center">
-                        <div className="pt-6 pb-3 min-h-[100px]">
-                          <div className="md:text-lg text-base font-bold mb-2 w-[180px]">
+                      <div className="flex flex-col text-center w-full items-center md:flex-auto flex-1">
+                        <div className="pt-6 pb-3 min-h-[100px] md:flex-auto flex-1">
+                          <div className="md:text-lg text-sm font-bold mb-2 md:w-[180px] w-32">
                             {" "}
                             {item.title}{" "}
                           </div>
                         </div>
-                        <div className="flex flex-row">
+                        <div className="flex flex-col items-center">
                           <div className="text-xs text-slate-400">
                             {item.genre}
                           </div>
+                          <Link
+                            to={"/MovieDetail/" + item.id}
+                            className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
+                          >
+                            Details{" "}
+                          </Link>
                         </div>
-                        <Link
-                          to={"/MovieDetail/" + item.id}
-                          className="btn bg-[#C539B4] py-2 px-4 text-medium text-white rounded-md font-medium w-[100px] mt-3"
-                        >
-                          Details{" "}
-                        </Link>
                       </div>
                     </div>
                   </div>

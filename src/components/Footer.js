@@ -46,15 +46,15 @@ const Footer = () => {
             <div>
               <h4 className="mb-8 font-bold text-[16px]">Our Sponsor</h4>
             </div>
-            <div>
-              <ul className="flex md:flex-col flex-row justify-center gap-3">
-                <li className="mb-[25px]">
+            <div className="mb-[25px]">
+              <ul className="flex md:flex-col flex-row justify-center gap-5 md:items-start items-center">
+                <li className="">
                   <img src={Sponsor1} alt="sponsor1" />
                 </li>
-                <li className="mb-[25px]">
+                <li className="">
                   <img src={Sponsor2} alt="sponsor2" />
                 </li>
-                <li className="mb-[25px]">
+                <li className="">
                   <img src={Sponsor3} alt="sponsor3" />
                 </li>
               </ul>
