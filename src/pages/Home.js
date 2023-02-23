@@ -123,7 +123,7 @@ const Homepage = () => {
             </div>
           </div>
           {nowShowing[0] ? (
-            <div className="flex gap-8 mt-8 md:px-8 px-0 overflow-x-auto ">
+            <div className="flex gap-8 mt-8 md:px-8 px-0 overflow-x-auto container">
               {nowShowing.map((item) => (
                 <div
                   className="relative md:w-auto w-[150px] md:h-auto h-[403px]"
@@ -172,7 +172,7 @@ const Homepage = () => {
               <Link to="/ViewAll">View All</Link>
             </div>
           </div>
-          <div className="overflow-x-auto flex">
+          <div className="overflow-x-auto flex container">
             {month.map((time) => {
               return (
                 <button
@@ -186,7 +186,7 @@ const Homepage = () => {
             })}
           </div>
           {upComing[0] ? (
-            <div className="flex gap-8 mt-8 md:px-8 px-1 overflow-x-auto">
+            <div className="flex container gap-8 mt-8 md:px-8 px-1 overflow-x-auto">
               {upComing.map((item) => (
                 <div
                   className="relative md:w-auto w-[150px] md:h-auto h-[403px]"
