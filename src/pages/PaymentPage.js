@@ -351,12 +351,12 @@ const PaymentPage = () => {
                   </div>
                 </div>
               </div>
-              <button
+              {/* <button
                 type="submit"
                 className="w-full btn bg-[#C539B4] mt-10 md:hidden block"
               >
                 Pay your order
-              </button>
+              </button> */}
               {errorPayment && (
                 <div className="mt-5 md:hidden block font-bold text-red-500 text-center text-lg">
                   {errorPayment}{" "}

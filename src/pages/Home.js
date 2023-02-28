@@ -95,7 +95,7 @@ const Homepage = () => {
     };
     fetchUpComing();
   }, [selectMonth]);
-
+console.log(nowShowing)
   return (
     <>
       {token ? <NavBarAfterLogin /> : <Navbar />}
