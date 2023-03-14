@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Logo from "../assets/images/logo-cinemnar.jpg";
 import searchIcon from "../assets/images/nav-search.png";
-import profileImage from "../assets/images/nav-photo.png";
 import NavMenu from "../assets/images/nav-menu.png";
 import user from "../assets/images/user.png";
 import { logout as logoutAction } from "../redux/reducers/authReducers";
@@ -71,16 +70,16 @@ const NavBarAfterLogin = (pictureProfile) => {
               <img
                 src={pictureProfile.image}
                 alt="profile"
-                className="w-10 rounded-full"
+                className="w-10 rounded-full aspect-square object-cover"
               />
             ) : profile?.picture ? (
               <img
                 src={profile?.picture}
                 alt="profile"
-                className="w-10 rounded-full"
+                className="w-10 rounded-full aspect-square object-cover"
               />
             ) : (
-              <img src={user} alt="profile" className="w-10 rounded-full" />
+              <img src={user} alt="profile" className="w-10 rounded-full aspect-square object-cover" />
             )}
             <div className="hidden group-hover:block absolute right-0 border-2 border-[#dedede] bg-[#FEFCF3] py-2 pl-4 pr-8">
               <div>

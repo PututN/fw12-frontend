@@ -1,6 +1,5 @@
 import Footer from "../components/Footer";
 import NavBarAfterLogin from "../components/NavBarAfterLogin";
-import Navbar from "../components/Navbar";
 import { useSelector, useDispatch } from "react-redux";
 import ProfileCard from "../components/ProfileCard";
 import { Link } from "react-router-dom";
@@ -216,7 +215,7 @@ const ProfilePage = () => {
                             <img
                               src={profile.picture}
                               alt="profile"
-                              className="w-32 rounded-full"
+                              className="w-32 rounded-full aspect-square object-cover"
                             />
                           ) : (
                             <img
@@ -240,7 +239,7 @@ const ProfilePage = () => {
                             >
                               Select Picture
                             </label>
-
+                            {file.name ? `${file.name.slice(0, 15)}...` : null}
                             {setFile && (
                               <button
                                 className="btn bg-[#EF9A53] mt-5"

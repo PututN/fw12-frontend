@@ -22,50 +22,49 @@ const ProfileCard = () => {
     }
   }, [token]);
 
-    //UPLOAD PHOTO
+  //UPLOAD PHOTO
 
-    const [errorSize, setErrorSize] = useState(false);
-    const [successUpload, setSuccessUpload] = useState(false);
-  
-    const [errorPicture, setErrorPicture] = useState(false);
-    const [loadingUpload, setLoadingUpload] = useState(false);
-    const [file, setFile] = useState(false);
-    const handleUploadPhoto = async (e) => {
-      try {
-        if (file) {
-          if (file?.size <= 5024 * 1024) {
-            setLoadingUpload("loading...");
-            const form = new FormData();
-            form.append("picture", file);
-            const response = await http(token).patch("/profile/updated", form, {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            });
-            setLoadingUpload(false);
-            setSuccessUpload(response.data.message);
-            setTimeout(() => {
-              setSuccessUpload(false);
-              fetchProfile();
-            }, 3000);
-          } else {
-            setErrorSize("Please upload photo less than 5 MB");
-            setTimeout(() => {
-              setErrorSize(false);
-            }, 3000);
-          }
-        } else {
-          setErrorPicture("Please Select photo");
+  const [errorSize, setErrorSize] = useState(false);
+  const [successUpload, setSuccessUpload] = useState(false);
+
+  const [errorPicture, setErrorPicture] = useState(false);
+  const [loadingUpload, setLoadingUpload] = useState(false);
+  const [file, setFile] = useState(false);
+  const handleUploadPhoto = async (e) => {
+    try {
+      if (file) {
+        if (file?.size <= 5024 * 1024) {
+          setLoadingUpload("loading...");
+          const form = new FormData();
+          form.append("picture", file);
+          const response = await http(token).patch("/profile/updated", form, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          setLoadingUpload(false);
+          setSuccessUpload(response.data.message);
+          setFile(false)
           setTimeout(() => {
-            setErrorPicture(false);
+            setSuccessUpload(false);
+            fetchProfile();
+          }, 3000);
+        } else {
+          setErrorSize("Please upload photo less than 5 MB");
+          setTimeout(() => {
+            setErrorSize(false);
           }, 3000);
         }
-      } catch (error) {
-        console.log(error);
+      } else {
+        setErrorPicture("Please Select photo");
+        setTimeout(() => {
+          setErrorPicture(false);
+        }, 3000);
       }
-    };
-  
-
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <>
       <div className="bg-white rounded-lg">
@@ -76,12 +75,12 @@ const ProfileCard = () => {
               <img
                 src={profile.picture}
                 alt="profile"
-                className="w-32 rounded-full"
+                className="w-32 rounded-full aspect-square object-cover"
               />
             ) : (
               <img src={user} alt="profile" className="w-32 rounded-full" />
             )}
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-3">
               <input
                 accept="image/png, image/jpeg, image/jpg"
                 type="file"
@@ -93,6 +92,7 @@ const ProfileCard = () => {
               <label htmlFor="picture" className="btn bg-[#C539B4]">
                 Select Picture
               </label>
+              {file.name ? `${file.name.slice(0, 15)}...` : null}
               {setFile && (
                 <button
                   className="btn bg-[#EF9A53] mt-5"
